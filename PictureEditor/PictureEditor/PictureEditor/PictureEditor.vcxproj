@@ -18,6 +18,24 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="image.h" />
+    <ClInclude Include="Iterator.h" />
+    <ClInclude Include="location.h" />
+    <ClInclude Include="map.h" />
+    <ClInclude Include="picture.h" />
+    <ClInclude Include="resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="image.cpp" />
+    <ClCompile Include="Iterator.cpp" />
+    <ClCompile Include="location.cpp" />
+    <ClCompile Include="map.cpp" />
+    <ClCompile Include="picture.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="PictureEditor.rc" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{DD217CF1-C0AB-4088-BD9E-A45E60B695A5}</ProjectGuid>
     <RootNamespace>PictureEditor</RootNamespace>
@@ -109,8 +127,6 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
