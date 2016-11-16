@@ -6,6 +6,7 @@
 #include<atlimage.h>
 #include<iostream>
 #include<io.h>
+#include<Afxwin.h>
 
 using namespace std;
 
@@ -23,7 +24,8 @@ public:
 	virtual bool setLoc(location* loca) { loc = loca; }
 	virtual string getName() { return picName; }
 	virtual bool setName(string name) { this->picName = name; }
-	virtual bool setSolution();   //设置分辨率
+	virtual bool getSolution(CImage* image,int& width, int& height);
+	virtual bool setSolution(CImage *pImage, CImage *ResultImage, int StretchHeight, int StretchWidth);   //设置分辨率
 	virtual bool undoSolution();  //撤销设置
 	virtual bool redoSolution();  //重新设置
 	virtual bool setDiscription();  //设置评论

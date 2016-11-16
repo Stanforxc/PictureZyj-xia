@@ -27,18 +27,18 @@ image::~image()
 
 //加载单张图片
 bool image::read(string u) {
-	CImage image;
-	image.Load(u.c_str);
+	CImage* image = new CImage();
+	image->Load(u.c_str);
 
 	try {
-		if (image.IsNull) {
+		if (image->IsNull) {
 			throw 1;
 			return false;
 		}
 
 		map<string, vector<CImage> >::iterator it = imageMap.find(u);
 		if (it != imageMap.end()) {
-			it->second.push_back(image);
+			it->second.push_back(*image);
 		}
 		else {
 			imageMap.insert(make_pair(u, vector<CImage>()));
@@ -53,6 +53,7 @@ bool image::read(string u) {
 		url = newUrl;
 	}
 	
+	delete image;
 }
 
 //加载文件加下所有文件
@@ -72,6 +73,7 @@ bool image::readDir(string dUrl, int& sucRate) {
 		return true;
 	}
 	return false;
+
 }
 
 void image::getFiles(string path, vector<string>& files)
@@ -102,19 +104,21 @@ void image::getFiles(string path, vector<string>& files)
 }
 
 bool image::save(string dUrl) {
-	CImage image;
+	CImage* image = new CImage();
 	string name = "test.jpg";    //文件名 默认为"test.jpg"
 
 	string comb = dUrl + name;
-	image.Save(comb.c_str);
+	image->Save(comb.c_str);
 
 	//查看是否保存成功
-	image.Load(comb.c_str);
+	image->Load(comb.c_str);
 
-	if (image.IsNull) {
+	if (image->IsNull) {
 		return false;
 	}
 	return true;
+
+	delete image;
 }
 
 bool image::del(string url) {
@@ -122,10 +126,41 @@ bool image::del(string url) {
 
 	//查看是否删除成功
 
-	CImage image;
+	CImage* image = new CImage();
 
-	if (image.IsNull) {
+	if (image->IsNull) {
 		return true;
 	}
 	return false;
+
+	delete image;
+}
+
+bool image::getSolution(CImage* image,int& width, int& height) {
+	width = image->GetWidth;
+	height = image->GetHeight;
+	return true;
+}
+
+bool image::setSolution(CImage *pImage, CImage *ResultImage, int StretchHeight, int StretchWidth) {
+	if (pImage->IsDIBSection) {	
+		// 取得 pImage 的 DC
+		CDC* pImageDC1 = CDC::FromHandle(pImage->GetDC);
+		CBitmap* bitmap1 = pImageDC1->GetCurrentBitmap();
+		BITMAP bmpInfo;
+		bitmap1->GetBitmap(&bmpInfo);
+
+		// 建立新的 CImage
+		ResultImage->Create(StretchWidth, StretchHeight, bmpInfo.bmBitsPixel);
+		CDC* ResultImageDC = CDC::FromHandle(ResultImage->GetDC());
+
+		ResultImageDC->SetStretchBltMode(HALFTONE);
+
+		SetBrushOrgEx(ResultImageDC->m_hDC, 0, 0, NULL);
+
+		StretchBlt(*ResultImageDC, 0, 0, StretchWidth, StretchHeight, *pImageDC1, 0, 0, pImage->GetWidth(), pImage->GetHeight(), SRCCOPY);
+
+		pImage->ReleaseDC();
+		ResultImage->ReleaseDC();
+	}
 }
