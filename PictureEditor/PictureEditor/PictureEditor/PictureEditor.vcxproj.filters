@@ -58,6 +58,12 @@
     <ClCompile Include="location.cpp">
       <Filter>源文件\Entity</Filter>
     </ClCompile>
+    <ClCompile Include="map.cpp">
+      <Filter>源文件\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="picture.cpp">
+      <Filter>源文件\Entity</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

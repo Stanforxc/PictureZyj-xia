@@ -28,6 +28,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="location.cpp" />
+    <ClCompile Include="map.cpp" />
+    <ClCompile Include="picture.cpp" />
     <ResourceCompile Include="PictureEditor.rc" />
     <ClCompile Include="image.cpp" />
   </ItemGroup>

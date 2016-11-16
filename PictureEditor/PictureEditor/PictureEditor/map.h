@@ -11,6 +11,11 @@
 struct Coordinate {
 	int x;
 	int y;
+
+	Coordinate(int xx, int yy) {
+		this->x = xx;
+		this->y = yy;
+	}
 };
 
 class Map :
@@ -18,11 +23,12 @@ class Map :
 {
 public:
 	Map();
+	Map(string url, string picName, string des, Map* parentMap);
 	~Map();
 
 	Map*           getSubMapByCoordiante(int x, int y);
-	bool           deleteSubMap(int x, int y, Map*);
-	void           addSubMap(int x, int y, Map* map);
+	bool           deleteSubMap(int x, int y, Map* map);
+	bool           addSubMap(int x, int y, Map* map);
 	Map*           getParentMap();
 
 
