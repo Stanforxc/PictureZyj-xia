@@ -5,15 +5,15 @@
 
 using namespace std;
 
-class image
+class Image
 {
 public:
-	image();
+	Image();
 	virtual bool read() = 0 ;
 	virtual bool save(string url) = 0;
 	virtual bool del(string url) = 0;
 	virtual location* getLoc() = 0;
-	virtual bool setLoc( location* loc ) = 0;
+	virtual bool setLoc( Location* loc ) = 0;
 	virtual string getName() { return picName; }
 	virtual bool setName(string name) { this->picName = name; }
 	virtual bool setSolution();   //设置分辨率
@@ -24,7 +24,7 @@ public:
 	virtual void zoomOut();   //放大
 	virtual void zoomIn();    //缩小
 	virtual void rotate();
-	~image();
+	~Image();
 private:
 	location* loc;
 	string url;

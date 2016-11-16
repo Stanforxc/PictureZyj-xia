@@ -27,14 +27,11 @@
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="image.cpp" />
-    <ClCompile Include="Iterator.cpp" />
-    <ClCompile Include="location.cpp" />
-    <ClCompile Include="map.cpp" />
-    <ClCompile Include="picture.cpp" />
+    <ResourceCompile Include="PictureEditor.rc" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="PictureEditor.rc" />
+    <ClCompile Include="location.cpp" />
+    <ClCompile Include="map.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{DD217CF1-C0AB-4088-BD9E-A45E60B695A5}</ProjectGuid>
