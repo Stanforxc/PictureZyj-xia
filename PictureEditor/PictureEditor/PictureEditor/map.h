@@ -1,10 +1,10 @@
 #pragma once
 #include "image.h"
-class map :
+class Map :
 	public image
 {
 public:
-	map();
-	~map();
+	Map();
+	~Map();
 };
 

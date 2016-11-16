@@ -22,7 +22,7 @@
     <ClInclude Include="image.h" />
     <ClInclude Include="Iterator.h" />
     <ClInclude Include="location.h" />
-    <ClInclude Include="map.h" />
+    <ClInclude Include="Map.h" />
     <ClInclude Include="picture.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
@@ -30,11 +30,14 @@
     <ClCompile Include="image.cpp" />
     <ClCompile Include="Iterator.cpp" />
     <ClCompile Include="location.cpp" />
-    <ClCompile Include="map.cpp" />
+    <ClCompile Include="Map.cpp" />
     <ClCompile Include="picture.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="PictureEditor.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{DD217CF1-C0AB-4088-BD9E-A45E60B695A5}</ProjectGuid>

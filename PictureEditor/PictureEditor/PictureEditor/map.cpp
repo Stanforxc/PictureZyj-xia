@@ -1,12 +1,12 @@
-#include "map.h"
+#include "Map.h"
 
 
 
-map::map()
+Map::Map()
 {
 }
 
 
-map::~map()
+Map::~Map()
 {
 }
