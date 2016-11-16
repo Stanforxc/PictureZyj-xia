@@ -2,21 +2,39 @@
 #include "location.h"
 #include<string>
 #include<vector>
+#include<map>
+#include<atlimage.h>
+#include<iostream>
+#include<io.h>
+#include<Afxwin.h>
 
 using namespace std;
 
 class Image
 {
 public:
+<<<<<<< HEAD
 	Image();
 	virtual bool read() = 0 ;
 	virtual bool save(string url) = 0;
 	virtual bool del(string url) = 0;
 	virtual location* getLoc() = 0;
 	virtual bool setLoc( Location* loc ) = 0;
+=======
+	image();
+	image(string url,string picName,string des);
+	virtual bool read(string url);
+	void getFiles(string path, vector<string>& files);  //获取文件名
+	virtual bool readDir(string dUrl, int& sucRate);
+	virtual bool save(string url);
+	virtual bool del(string url);
+	virtual location* getLoc() { return loc; }
+	virtual bool setLoc(location* loca) { loc = loca; }
+>>>>>>> origin/master
 	virtual string getName() { return picName; }
 	virtual bool setName(string name) { this->picName = name; }
-	virtual bool setSolution();   //设置分辨率
+	virtual bool getSolution(CImage* image,int& width, int& height);
+	virtual bool setSolution(CImage *pImage, CImage *ResultImage, int StretchHeight, int StretchWidth);   //设置分辨率
 	virtual bool undoSolution();  //撤销设置
 	virtual bool redoSolution();  //重新设置
 	virtual bool setDiscription();  //设置评论
@@ -27,8 +45,10 @@ public:
 	~Image();
 private:
 	location* loc;
-	string url;
+	string url;  //图片url
+	string dirUrl;  //文件夹url
 	vector<string> urlPrev;  //记录先前的分辨率版本
+	map<string, vector<CImage> >  imageMap;
 	string picName;
 	string description;
 };
