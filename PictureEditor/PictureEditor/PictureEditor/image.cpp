@@ -1,47 +1,47 @@
-#include "image.h"
+#include "Image.h"
 
 
 
 
-image::image()
+Image::Image()
 {
-	loc = new location();
+	loc = new Location();
 	url = "test.jpg";    //默认为当前路径
 	dirUrl = "";  //默认文件夹路径
 	picName = "";
 	description = "";
 }
 
-image::image(string url, string picName, string des) {
+Image::Image(string url, string picName, string des) {
 	this->url = url;
 	this->picName = picName;
 	this->description = des;
 }
 
 
-image::~image()
+Image::~Image()
 {
 	delete loc;
 }
 
 
 //加载单张图片
-bool image::read(string u) {
-	CImage* image = new CImage();
-	image->Load(u.c_str);
+bool Image::read(string u) {
+	CImage* Image = new CImage();
+	Image->Load(u.c_str);
 
 	try {
-		if (image->IsNull) {
+		if (Image->IsNull) {
 			throw 1;
 			return false;
 		}
 
-		map<string, vector<CImage> >::iterator it = imageMap.find(u);
-		if (it != imageMap.end()) {
-			it->second.push_back(*image);
+		map<string, vector<CImage> >::iterator it = ImageMap.find(u);
+		if (it != ImageMap.end()) {
+			it->second.push_back(*Image);
 		}
 		else {
-			imageMap.insert(make_pair(u, vector<CImage>()));
+			ImageMap.insert(make_pair(u, vector<CImage>()));
 		}
 
 		
@@ -53,11 +53,11 @@ bool image::read(string u) {
 		url = newUrl;
 	}
 	
-	delete image;
+	delete Image;
 }
 
 //加载文件加下所有文件
-bool image::readDir(string dUrl, int& sucRate) {
+bool Image::readDir(string dUrl, int& sucRate) {
 	//获取文件夹下所有文件名
 	vector<string> files;
 	getFiles(dUrl, files);
@@ -76,7 +76,7 @@ bool image::readDir(string dUrl, int& sucRate) {
 
 }
 
-void image::getFiles(string path, vector<string>& files)
+void Image::getFiles(string path, vector<string>& files)
 {
 	//文件句柄  
 	long   hFile = 0;
@@ -103,46 +103,46 @@ void image::getFiles(string path, vector<string>& files)
 	}
 }
 
-bool image::save(string dUrl) {
-	CImage* image = new CImage();
+bool Image::save(string dUrl) {
+	CImage* Image = new CImage();
 	string name = "test.jpg";    //文件名 默认为"test.jpg"
 
 	string comb = dUrl + name;
-	image->Save(comb.c_str);
+	Image->Save(comb.c_str);
 
 	//查看是否保存成功
-	image->Load(comb.c_str);
+	Image->Load(comb.c_str);
 
-	if (image->IsNull) {
+	if (Image->IsNull) {
 		return false;
 	}
 	return true;
 
-	delete image;
+	delete Image;
 }
 
-bool image::del(string url) {
+bool Image::del(string url) {
 	remove(url.c_str);
 
 	//查看是否删除成功
 
-	CImage* image = new CImage();
+	CImage* Image = new CImage();
 
-	if (image->IsNull) {
+	if (Image->IsNull) {
 		return true;
 	}
 	return false;
 
-	delete image;
+	delete Image;
 }
 
-bool image::getSolution(CImage* image,int& width, int& height) {
-	width = image->GetWidth;
-	height = image->GetHeight;
+bool Image::getSolution(CImage* Image,int& width, int& height) {
+	width = Image->GetWidth;
+	height = Image->GetHeight;
 	return true;
 }
 
-bool image::setSolution(CImage *pImage, CImage *ResultImage, int StretchHeight, int StretchWidth) {
+bool Image::setSolution(CImage *pImage, CImage *ResultImage, int StretchHeight, int StretchWidth) {
 	if (pImage->IsDIBSection) {	
 		// 取得 pImage 的 DC
 		CDC* pImageDC1 = CDC::FromHandle(pImage->GetDC);

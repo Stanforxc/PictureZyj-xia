@@ -4,7 +4,6 @@
 #define _MAP_H_
 
 #include "image.h"
-<<<<<<< HEAD
 #include "location.h"
 #include <map>
 
@@ -16,15 +15,10 @@ struct Coordinate {
 
 class Map :
 	public Image
-=======
-class Map :
-	public image
->>>>>>> origin/master
 {
 public:
 	Map();
 	~Map();
-<<<<<<< HEAD
 
 	Map*           getSubMapByCoordiante(int x, int y);
 	bool           deleteSubMap(int x, int y, Map*);
@@ -35,8 +29,6 @@ public:
 private:
 	std::map<Coordinate, Map*>   _subMap;
 	Map*                         _parentMap;
-=======
->>>>>>> origin/master
 };
 
 #endif

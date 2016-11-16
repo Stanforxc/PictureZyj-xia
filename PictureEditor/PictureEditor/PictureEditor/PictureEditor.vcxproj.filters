@@ -13,7 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-<<<<<<< HEAD
     <Filter Include="头文件\Controller">
       <UniqueIdentifier>{58f24a8d-1002-49a0-b483-a456e523bd56}</UniqueIdentifier>
     </Filter>
@@ -25,86 +24,42 @@
     </Filter>
     <Filter Include="源文件\Entity">
       <UniqueIdentifier>{8fd1bc0a-dd4a-423c-920a-6e9139e136d4}</UniqueIdentifier>
-=======
-    <Filter Include="头文件\Entity">
-      <UniqueIdentifier>{5e04f901-21d5-4844-9c43-2cb8efc0cfb4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="头文件\Controller">
-      <UniqueIdentifier>{b6d452f4-4be9-475e-9870-45416196b315}</UniqueIdentifier>
->>>>>>> origin/master
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="image.h">
       <Filter>头文件\Entity</Filter>
-<<<<<<< HEAD
     </ClInclude>
     <ClInclude Include="Iterator.h">
       <Filter>头文件\Entity</Filter>
     </ClInclude>
     <ClInclude Include="location.h">
+      <Filter>头文件\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="picture.h">
+      <Filter>头文件\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
       <Filter>头文件\Entity</Filter>
     </ClInclude>
     <ClInclude Include="map.h">
       <Filter>头文件\Entity</Filter>
     </ClInclude>
-    <ClInclude Include="picture.h">
-      <Filter>头文件\Entity</Filter>
-    </ClInclude>
-=======
-    </ClInclude>
-    <ClInclude Include="Iterator.h">
-      <Filter>头文件\Entity</Filter>
-    </ClInclude>
-    <ClInclude Include="location.h">
-      <Filter>头文件\Entity</Filter>
-    </ClInclude>
-    <ClInclude Include="Map.h">
-      <Filter>头文件\Entity</Filter>
-    </ClInclude>
-    <ClInclude Include="picture.h">
-      <Filter>头文件\Entity</Filter>
-    </ClInclude>
->>>>>>> origin/master
-    <ClInclude Include="resource.h">
-      <Filter>头文件\Entity</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
-=======
-    <ClCompile Include="image.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="picture.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="location.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Iterator.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Map.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
->>>>>>> origin/master
     <ResourceCompile Include="PictureEditor.rc">
       <Filter>资源文件</Filter>
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
+    <ClCompile Include="image.cpp">
+      <Filter>源文件\Entity</Filter>
+    </ClCompile>
     <ClCompile Include="location.cpp">
       <Filter>源文件\Entity</Filter>
     </ClCompile>
-    <ClCompile Include="map.cpp">
-      <Filter>源文件\Entity</Filter>
-    </ClCompile>
-=======
+  </ItemGroup>
+  <ItemGroup>
     <None Include="ClassDiagram.cd" />
->>>>>>> origin/master
   </ItemGroup>
 </Project>

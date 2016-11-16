@@ -1,4 +1,8 @@
 #pragma once
+
+#ifndef _IMAGE_H_
+#define _IMAGE_H_
+
 #include "location.h"
 #include<string>
 #include<vector>
@@ -13,27 +17,18 @@ using namespace std;
 class Image
 {
 public:
-<<<<<<< HEAD
 	Image();
-	virtual bool read() = 0 ;
-	virtual bool save(string url) = 0;
-	virtual bool del(string url) = 0;
-	virtual location* getLoc() = 0;
-	virtual bool setLoc( Location* loc ) = 0;
-=======
-	image();
-	image(string url,string picName,string des);
+	Image(string url, string picName, string des);
 	virtual bool read(string url);
 	void getFiles(string path, vector<string>& files);  //获取文件名
 	virtual bool readDir(string dUrl, int& sucRate);
 	virtual bool save(string url);
 	virtual bool del(string url);
-	virtual location* getLoc() { return loc; }
-	virtual bool setLoc(location* loca) { loc = loca; }
->>>>>>> origin/master
+	virtual Location* getLoc() { return loc; }
+	virtual bool setLoc(Location* loca) { loc = loca; }
 	virtual string getName() { return picName; }
 	virtual bool setName(string name) { this->picName = name; }
-	virtual bool getSolution(CImage* image,int& width, int& height);
+	virtual bool getSolution(CImage* image, int& width, int& height);
 	virtual bool setSolution(CImage *pImage, CImage *ResultImage, int StretchHeight, int StretchWidth);   //设置分辨率
 	virtual bool undoSolution();  //撤销设置
 	virtual bool redoSolution();  //重新设置
@@ -44,7 +39,7 @@ public:
 	virtual void rotate();
 	~Image();
 private:
-	location* loc;
+	Location* loc;
 	string url;  //图片url
 	string dirUrl;  //文件夹url
 	vector<string> urlPrev;  //记录先前的分辨率版本
@@ -52,4 +47,10 @@ private:
 	string picName;
 	string description;
 };
+
+
+#endif
+
+
+
 
