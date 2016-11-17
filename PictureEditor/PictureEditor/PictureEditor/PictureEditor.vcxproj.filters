@@ -13,17 +13,23 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="头文件\Controller">
-      <UniqueIdentifier>{58f24a8d-1002-49a0-b483-a456e523bd56}</UniqueIdentifier>
-    </Filter>
     <Filter Include="头文件\Entity">
       <UniqueIdentifier>{18bb4afb-8111-4f97-8368-12a2baa574f1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="源文件\Controller">
-      <UniqueIdentifier>{b31156e2-6db9-489f-990b-4a3c3fb58a32}</UniqueIdentifier>
+    <Filter Include="头文件\Service">
+      <UniqueIdentifier>{da650179-edb1-463a-bef5-b0ad772de6c2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\Json">
+      <UniqueIdentifier>{a78ec229-204d-401f-9d9f-a242a51bce98}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\Json">
+      <UniqueIdentifier>{4c51ecec-8c03-4b29-8f06-cd342e27ef62}</UniqueIdentifier>
     </Filter>
     <Filter Include="源文件\Entity">
-      <UniqueIdentifier>{8fd1bc0a-dd4a-423c-920a-6e9139e136d4}</UniqueIdentifier>
+      <UniqueIdentifier>{8d7a8adc-d5c4-4d02-b6ed-a90823096108}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\Service">
+      <UniqueIdentifier>{8e73f83b-d0a9-4562-92e0-6f7ff15c2197}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -45,6 +51,48 @@
     <ClInclude Include="map.h">
       <Filter>头文件\Entity</Filter>
     </ClInclude>
+    <ClInclude Include="Header\Service\LocationService.h">
+      <Filter>头文件\Service</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Service\MapService.h">
+      <Filter>头文件\Service</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Json\allocator.h">
+      <Filter>头文件\Json</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Json\assertions.h">
+      <Filter>头文件\Json</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Json\autolink.h">
+      <Filter>头文件\Json</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Json\config.h">
+      <Filter>头文件\Json</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Json\features.h">
+      <Filter>头文件\Json</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Json\forwards.h">
+      <Filter>头文件\Json</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Json\json.h">
+      <Filter>头文件\Json</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Json\reader.h">
+      <Filter>头文件\Json</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Json\value.h">
+      <Filter>头文件\Json</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Json\version.h">
+      <Filter>头文件\Json</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Json\writer.h">
+      <Filter>头文件\Json</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Json\json_tool.h">
+      <Filter>头文件\Json</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="PictureEditor.rc">
@@ -52,20 +100,29 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="image.cpp">
-      <Filter>源文件\Entity</Filter>
-    </ClCompile>
-    <ClCompile Include="location.cpp">
-      <Filter>源文件\Entity</Filter>
-    </ClCompile>
-    <ClCompile Include="map.cpp">
-      <Filter>源文件\Entity</Filter>
-    </ClCompile>
-    <ClCompile Include="picture.cpp">
-      <Filter>源文件\Entity</Filter>
-    </ClCompile>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ClassDiagram.cd" />
+    <ClCompile Include="Source\Json\json_reader.cpp">
+      <Filter>源文件\Json</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Json\json_value.cpp">
+      <Filter>源文件\Json</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Json\json_writer.cpp">
+      <Filter>源文件\Json</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Entity\image.cpp">
+      <Filter>源文件\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Entity\location.cpp">
+      <Filter>源文件\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Entity\map.cpp">
+      <Filter>源文件\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Entity\picture.cpp">
+      <Filter>源文件\Entity</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

@@ -19,6 +19,20 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Header\Json\allocator.h" />
+    <ClInclude Include="Header\Json\assertions.h" />
+    <ClInclude Include="Header\Json\autolink.h" />
+    <ClInclude Include="Header\Json\config.h" />
+    <ClInclude Include="Header\Json\features.h" />
+    <ClInclude Include="Header\Json\forwards.h" />
+    <ClInclude Include="Header\Json\json.h" />
+    <ClInclude Include="Header\Json\json_tool.h" />
+    <ClInclude Include="Header\Json\reader.h" />
+    <ClInclude Include="Header\Json\value.h" />
+    <ClInclude Include="Header\Json\version.h" />
+    <ClInclude Include="Header\Json\writer.h" />
+    <ClInclude Include="Header\Service\LocationService.h" />
+    <ClInclude Include="Header\Service\MapService.h" />
     <ClInclude Include="image.h" />
     <ClInclude Include="Iterator.h" />
     <ClInclude Include="location.h" />
@@ -27,14 +41,19 @@
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="location.cpp" />
-    <ClCompile Include="map.cpp" />
-    <ClCompile Include="picture.cpp" />
     <ResourceCompile Include="PictureEditor.rc" />
-    <ClCompile Include="image.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\Entity\image.cpp" />
+    <ClCompile Include="Source\Entity\location.cpp" />
+    <ClCompile Include="Source\Entity\map.cpp" />
+    <ClCompile Include="Source\Entity\picture.cpp" />
+    <ClCompile Include="Source\Json\json_reader.cpp" />
+    <ClCompile Include="Source\Json\json_value.cpp" />
+    <ClCompile Include="Source\Json\json_writer.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{DD217CF1-C0AB-4088-BD9E-A45E60B695A5}</ProjectGuid>
@@ -100,6 +119,9 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
     </ClCompile>
+    <Link>
+      <AdditionalDependencies>json_vc71_libmtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
