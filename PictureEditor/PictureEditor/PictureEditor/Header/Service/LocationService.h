@@ -14,13 +14,17 @@ public:
 	Location* getLocation(std::string locationName);
 	bool      addNewLocation(Location* location);
 	bool      deleteLocation(Location* locationToDelete);
-	bool      loadConfig();
-	bool      saveConfig();
+	Location* getCurrentLocation();
+	void      setCurrentLocation(Location* locationToSet);
+
 
 	
 
 private:
+	bool      loadConfig();
+	bool      saveConfig();
 	std::list<Location*>  _locationRepo;
+	Location*             _currentLocation;
 };
 
 

@@ -19,6 +19,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Header\Entity\image.h" />
+    <ClInclude Include="Header\Entity\Iterator.h" />
+    <ClInclude Include="Header\Entity\location.h" />
+    <ClInclude Include="Header\Entity\map.h" />
+    <ClInclude Include="Header\Entity\picture.h" />
+    <ClInclude Include="Header\Entity\resource.h" />
     <ClInclude Include="Header\Json\allocator.h" />
     <ClInclude Include="Header\Json\assertions.h" />
     <ClInclude Include="Header\Json\autolink.h" />
@@ -33,12 +39,6 @@
     <ClInclude Include="Header\Json\writer.h" />
     <ClInclude Include="Header\Service\LocationService.h" />
     <ClInclude Include="Header\Service\MapService.h" />
-    <ClInclude Include="image.h" />
-    <ClInclude Include="Iterator.h" />
-    <ClInclude Include="location.h" />
-    <ClInclude Include="map.h" />
-    <ClInclude Include="picture.h" />
-    <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="PictureEditor.rc" />
@@ -54,6 +54,8 @@
     <ClCompile Include="Source\Json\json_reader.cpp" />
     <ClCompile Include="Source\Json\json_value.cpp" />
     <ClCompile Include="Source\Json\json_writer.cpp" />
+    <ClCompile Include="Source\Service\LocationService.cpp" />
+    <ClCompile Include="Source\Service\MapService.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{DD217CF1-C0AB-4088-BD9E-A45E60B695A5}</ProjectGuid>

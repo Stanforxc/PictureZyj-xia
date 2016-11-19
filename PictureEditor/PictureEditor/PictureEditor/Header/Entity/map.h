@@ -30,11 +30,14 @@ public:
 	bool           deleteSubMap(int x, int y, Map* map);
 	bool           addSubMap(int x, int y, Map* map);
 	Map*           getParentMap();
+	int            getId();
+	void           setId(int Id);
 
 
 private:
 	std::map<Coordinate, Map*>   _subMap;
 	Map*                         _parentMap;
+	int                          _Id;
 };
 
 #endif

@@ -1,6 +1,6 @@
-#include "location.h"
-#include "map.h"
-#include "picture.h"
+#include "../../Header/Entity/location.h"
+#include "../../Header/Entity/map.h"
+#include "../../Header/Entity/picture.h"
 #include <algorithm>
 
 Location::Location() {

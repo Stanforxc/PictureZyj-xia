@@ -33,24 +33,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="image.h">
-      <Filter>头文件\Entity</Filter>
-    </ClInclude>
-    <ClInclude Include="Iterator.h">
-      <Filter>头文件\Entity</Filter>
-    </ClInclude>
-    <ClInclude Include="location.h">
-      <Filter>头文件\Entity</Filter>
-    </ClInclude>
-    <ClInclude Include="picture.h">
-      <Filter>头文件\Entity</Filter>
-    </ClInclude>
-    <ClInclude Include="resource.h">
-      <Filter>头文件\Entity</Filter>
-    </ClInclude>
-    <ClInclude Include="map.h">
-      <Filter>头文件\Entity</Filter>
-    </ClInclude>
     <ClInclude Include="Header\Service\LocationService.h">
       <Filter>头文件\Service</Filter>
     </ClInclude>
@@ -93,6 +75,24 @@
     <ClInclude Include="Header\Json\json_tool.h">
       <Filter>头文件\Json</Filter>
     </ClInclude>
+    <ClInclude Include="Header\Entity\image.h">
+      <Filter>头文件\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Entity\Iterator.h">
+      <Filter>头文件\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Entity\location.h">
+      <Filter>头文件\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Entity\map.h">
+      <Filter>头文件\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Entity\picture.h">
+      <Filter>头文件\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Entity\resource.h">
+      <Filter>头文件\Entity</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="PictureEditor.rc">
@@ -123,6 +123,12 @@
     </ClCompile>
     <ClCompile Include="Source\Entity\picture.cpp">
       <Filter>源文件\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Service\LocationService.cpp">
+      <Filter>源文件\Service</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Service\MapService.cpp">
+      <Filter>源文件\Service</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

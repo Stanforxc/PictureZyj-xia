@@ -1,4 +1,4 @@
-#include"map.h"
+#include"../../Header/Entity/map.h"
 
 Map::Map(): Image() {
 	this->_parentMap = nullptr;
@@ -45,4 +45,12 @@ bool Map::addSubMap(int x, int y, Map* map) {
 
 Map* Map::getParentMap() {
 	return this->_parentMap;
+}
+
+int  Map::getId() {
+	return this->_Id;
+}
+
+void Map::setId(int Id) {
+	this->_Id = Id;
 }

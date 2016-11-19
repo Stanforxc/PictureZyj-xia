@@ -1,4 +1,4 @@
-#include"picture.h"
+#include"../../Header/Entity/picture.h"
 
 Picture::Picture(): Image() {
 	this->_map = nullptr;

@@ -12,16 +12,18 @@ public:
 	MapService();
 	~MapService();
 
-	Map* getMapByName(std::string mapName);
+	Map* getMapByCondition(std::string mapName);
 	Map* getMapByLocation(Location* location);
 	bool addMap(Map* mapToAdd);
 	bool deleteMap(Map* mapToDelete);
-	bool loadConfig();
-	bool saveConfig();
+	
 
 
 private:
+	bool loadConfig();
+	bool saveConfig();
 	Map* _rootMap;
+	Map* _currentMap;
 };
 
 
