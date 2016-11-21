@@ -30,13 +30,16 @@ public:
 	virtual bool setName(string name) { this->picName = name; }
 	virtual bool getSolution(CImage* image, int& width, int& height);
 	virtual bool setSolution(CImage *pImage, CImage *ResultImage, int StretchHeight, int StretchWidth);   //设置分辨率
+
+
+
 	virtual bool undoSolution();  //撤销设置
 	virtual bool redoSolution();  //重新设置
-	virtual bool setDiscription();  //设置评论
-	virtual string getDiscription(string url);  //获取评论
-	virtual void zoomOut();   //放大
-	virtual void zoomIn();    //缩小
-	virtual void rotate();
+	virtual bool setDiscription(string comment);  //设置评论
+	virtual string getDiscription();  //获取评论
+
+	virtual HBITMAP GetRotatedBitmap(HBITMAP hBitmap, float radians, COLORREF clrBack);
+	virtual void rotate(CImage* image);
 	~Image();
 private:
 	Location* loc;
