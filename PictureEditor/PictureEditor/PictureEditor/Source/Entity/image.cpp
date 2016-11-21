@@ -182,6 +182,7 @@ string Image::getDiscription() {
 }
 
 void Image::rotate(CImage* image) {
+	//hahaha
 }
 
 HBITMAP Image::GetRotatedBitmap(HBITMAP hBitmap, float radians, COLORREF clrBack) {
