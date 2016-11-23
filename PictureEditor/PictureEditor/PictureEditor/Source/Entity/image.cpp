@@ -165,6 +165,87 @@ bool Image::setSolution(CImage *pImage, CImage *ResultImage, int StretchHeight, 
 	}
 }
 
+<<<<<<< HEAD
 std::string Image::getPictureUrl() {
 	return this->url;
 }
+=======
+bool Image::undoSolution() {
+	urlPrev.erase(urlPrev.end() - 1);
+}
+
+bool Image::redoSolution() {
+	urlPrev.push_back(url);
+}
+
+bool Image::setDiscription(string comment) {
+	description = comment;
+}
+
+string Image::getDiscription() {
+	return description;
+}
+
+void Image::rotate(CImage* image) {
+	//hahaha
+}
+
+HBITMAP Image::GetRotatedBitmap(HBITMAP hBitmap, float radians, COLORREF clrBack) {
+	CDC sourceDC, destDC;
+	sourceDC.CreateCompatibleDC(NULL);
+	destDC.CreateCompatibleDC(NULL);
+
+	BITMAP bm;
+	::GetObject(hBitmap, sizeof(bm), &bm);
+
+	float cosine = (float)cos(radians);
+	float sine = (float)sin(radians);
+
+	int x1 = (int)(bm.bmHeight * sine);
+	int y1 = (int)(bm.bmHeight * cosine);
+	int x2 = (int)(bm.bmWidth * cosine + bm.bmHeight * sine);
+	int y2 = (int)(bm.bmHeight * cosine - bm.bmWidth * sine);
+	int x3 = (int)(bm.bmWidth * cosine);
+	int y3 = (int)(-bm.bmWidth * sine);
+
+	int minx = min(0, min(x1, min(x2, x3)));
+	int miny = min(0, min(y1, min(y2, y3)));
+	int maxx = max(0, max(x1, max(x2, x3)));
+	int maxy = max(0, max(y1, max(y2, y3)));
+
+	int w = maxx - minx;
+	int h = maxy - miny;
+
+	HBITMAP hbmResult = ::CreateCompatibleBitmap(CClientDC(NULL), w, h);
+
+	HBITMAP hbmOldSource = (HBITMAP)::SelectObject(sourceDC.m_hDC, hBitmap);
+	HBITMAP hbmOldDest = (HBITMAP)::SelectObject(destDC.m_hDC, hbmResult);
+
+
+	HBRUSH hbrBack = CreateSolidBrush(clrBack);
+	HBRUSH hbrOld = (HBRUSH)::SelectObject(destDC.m_hDC, hbrBack);
+	destDC.PatBlt(0, 0, w, h, PATCOPY);
+	::DeleteObject(::SelectObject(destDC.m_hDC, hbrOld));
+
+
+	SetGraphicsMode(destDC.m_hDC, GM_ADVANCED);
+	XFORM xform;
+	xform.eM11 = cosine;
+	xform.eM12 = -sine;
+	xform.eM21 = sine;
+	xform.eM22 = cosine;
+	xform.eDx = (float)-minx;
+	xform.eDy = (float)-miny;
+
+	SetWorldTransform(destDC.m_hDC, &xform);
+
+	destDC.BitBlt(0, 0, bm.bmWidth, bm.bmHeight, &sourceDC, 0, 0, SRCCOPY);
+
+
+	::SelectObject(sourceDC.m_hDC, hbmOldSource);
+	::SelectObject(destDC.m_hDC, hbmOldDest);
+
+	return hbmResult;
+
+}
+>>>>>>> 90e98604eab7726b241c17a1c44cf494bc5a4a5b
