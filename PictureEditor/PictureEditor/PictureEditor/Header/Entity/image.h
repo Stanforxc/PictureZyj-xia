@@ -37,6 +37,7 @@ public:
 	virtual void zoomOut();   //∑≈¥Û
 	virtual void zoomIn();    //Àı–°
 	virtual void rotate();
+	virtual string getPictureUrl();
 	~Image();
 private:
 	Location* loc;

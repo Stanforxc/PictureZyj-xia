@@ -4,6 +4,7 @@
 #define _LOCATIONSERVICE_H_
 
 #include "../Entity/location.h"
+#include "../Entity/map.h"
 #include <list>
 
 class LocationService {
@@ -21,10 +22,9 @@ public:
 	
 
 private:
-	bool      loadConfig();
-	bool      saveConfig();
 	std::list<Location*>  _locationRepo;
 	Location*             _currentLocation;
+	static std::string _configUrl;
 };
 
 

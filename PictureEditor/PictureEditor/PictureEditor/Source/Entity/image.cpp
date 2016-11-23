@@ -164,3 +164,7 @@ bool Image::setSolution(CImage *pImage, CImage *ResultImage, int StretchHeight, 
 		ResultImage->ReleaseDC();
 	}
 }
+
+std::string Image::getPictureUrl() {
+	return this->url;
+}

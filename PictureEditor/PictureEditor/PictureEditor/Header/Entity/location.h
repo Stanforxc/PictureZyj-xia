@@ -4,6 +4,7 @@
 #define _LOCATION_H_
 
 #include "Iterator.h"
+#include "../Service/LocationService.h"
 #include<set>
 #include<list>
 #include<queue>
@@ -14,6 +15,7 @@ extern class Map;
 
 class Location
 {
+	friend class LocationService;
 public:
 	Location();
 	~Location();

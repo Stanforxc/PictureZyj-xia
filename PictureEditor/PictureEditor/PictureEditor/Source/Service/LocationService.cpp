@@ -1,5 +1,9 @@
 #include "../../Header/Service/LocationService.h"
 #include<exception>
+#include "../../Header/Json/json.h"
+#include <fstream>
+
+std::string LocationService::_configUrl = "Config/LocationConfig.txt";
 
 LocationService::LocationService() {
 	this->_currentLocation = nullptr;
@@ -51,11 +55,6 @@ void LocationService::setCurrentLocation(Location* locationToSet) {
 	this->_currentLocation = nullptr;
 }
 
-bool LocationService::loadConfig() {
-	//TODO: JSON file read and generate location obj
-}
 
-bool LocationService::saveConfig() {
-	//TODO: Save location obj into json file
-}
+
 
