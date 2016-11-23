@@ -36,12 +36,12 @@ bool Image::read(string u) {
 			return false;
 		}
 
-		map<string, vector<CImage> >::iterator it = ImageMap.find(u);
-		if (it != ImageMap.end()) {
+		map<string, vector<CImage> >::iterator it = imageMap.find(u);
+		if (it != imageMap.end()) {
 			it->second.push_back(*Image);
 		}
 		else {
-			ImageMap.insert(make_pair(u, vector<CImage>()));
+			imageMap.insert(make_pair(u, vector<CImage>()));
 		}
 
 		
@@ -165,11 +165,7 @@ bool Image::setSolution(CImage *pImage, CImage *ResultImage, int StretchHeight, 
 	}
 }
 
-<<<<<<< HEAD
-std::string Image::getPictureUrl() {
-	return this->url;
-}
-=======
+
 bool Image::undoSolution() {
 	urlPrev.erase(urlPrev.end() - 1);
 }
@@ -248,4 +244,3 @@ HBITMAP Image::GetRotatedBitmap(HBITMAP hBitmap, float radians, COLORREF clrBack
 	return hbmResult;
 
 }
->>>>>>> 90e98604eab7726b241c17a1c44cf494bc5a4a5b
