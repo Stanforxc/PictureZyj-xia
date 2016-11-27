@@ -1,9 +1,8 @@
 #include "../../Header/Service/LocationService.h"
 #include<exception>
-#include "../../Header/Json/json.h"
 #include <fstream>
 
-std::string LocationService::_configUrl = "Config/LocationConfig.txt";
+
 
 LocationService::LocationService() {
 	this->_currentLocation = nullptr;

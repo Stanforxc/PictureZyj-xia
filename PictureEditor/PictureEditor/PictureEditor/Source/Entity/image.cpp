@@ -244,3 +244,7 @@ HBITMAP Image::GetRotatedBitmap(HBITMAP hBitmap, float radians, COLORREF clrBack
 	return hbmResult;
 
 }
+
+std::string Image::getUrl() {
+	return this->url;
+}

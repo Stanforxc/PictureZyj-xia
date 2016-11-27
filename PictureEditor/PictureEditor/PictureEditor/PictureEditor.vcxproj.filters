@@ -93,6 +93,9 @@
     <ClInclude Include="Header\Entity\resource.h">
       <Filter>头文件\Entity</Filter>
     </ClInclude>
+    <ClInclude Include="Header\Service\Application.h">
+      <Filter>头文件\Service</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="PictureEditor.rc">
@@ -128,6 +131,9 @@
       <Filter>源文件\Service</Filter>
     </ClCompile>
     <ClCompile Include="Source\Service\MapService.cpp">
+      <Filter>源文件\Service</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Service\Application.cpp">
       <Filter>源文件\Service</Filter>
     </ClCompile>
   </ItemGroup>

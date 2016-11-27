@@ -6,8 +6,10 @@
 #include "../Entity/map.h"
 #include <list>
 
+class Application;
 
 class MapService {
+	friend class Application;
 public:
 	MapService();
 	~MapService();
@@ -15,9 +17,6 @@ public:
 	Map* getMapByName(std::string mapName);
 	bool addMap(int x, int y, Map* mapToAdd);
 	bool deleteMap(Map* mapToDelete);
-	
-
-
 private:
 	Map* _rootMap;
 	Map* _currentMap;

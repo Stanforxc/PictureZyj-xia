@@ -37,6 +37,7 @@
     <ClInclude Include="Header\Json\value.h" />
     <ClInclude Include="Header\Json\version.h" />
     <ClInclude Include="Header\Json\writer.h" />
+    <ClInclude Include="Header\Service\Application.h" />
     <ClInclude Include="Header\Service\LocationService.h" />
     <ClInclude Include="Header\Service\MapService.h" />
   </ItemGroup>
@@ -54,6 +55,7 @@
     <ClCompile Include="Source\Json\json_reader.cpp" />
     <ClCompile Include="Source\Json\json_value.cpp" />
     <ClCompile Include="Source\Json\json_writer.cpp" />
+    <ClCompile Include="Source\Service\Application.cpp" />
     <ClCompile Include="Source\Service\LocationService.cpp" />
     <ClCompile Include="Source\Service\MapService.cpp" />
   </ItemGroup>

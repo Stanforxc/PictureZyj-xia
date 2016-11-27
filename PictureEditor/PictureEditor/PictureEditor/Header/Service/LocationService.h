@@ -7,7 +7,11 @@
 #include "../Entity/map.h"
 #include <list>
 
+class Application;
+
 class LocationService {
+
+friend class Application;
 public:
 	LocationService();
 	~LocationService();
@@ -24,7 +28,6 @@ public:
 private:
 	std::list<Location*>  _locationRepo;
 	Location*             _currentLocation;
-	static std::string _configUrl;
 };
 
 

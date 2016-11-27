@@ -40,6 +40,7 @@ public:
 
 	virtual HBITMAP GetRotatedBitmap(HBITMAP hBitmap, float radians, COLORREF clrBack);
 	virtual void rotate(CImage* image);
+	virtual string getUrl();
 	~Image();
 private:
 	Location* loc;
