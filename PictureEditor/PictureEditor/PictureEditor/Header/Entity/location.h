@@ -16,6 +16,7 @@ extern class Map;
 class Location
 {
 	friend class LocationService;
+	friend class Application;
 public:
 	Location();
 	~Location();
@@ -25,6 +26,7 @@ public:
 	//getter & setter
 	Map* getMap();
 	void  setMap(Map* map);
+	
 
 	std::list <std::string>    getPictureContainer();
 	bool                       addToPictureContainer(std::string pictureToAdd);
