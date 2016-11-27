@@ -39,8 +39,6 @@ public:
 	bool           deleteSubMap( Map* map);
 	bool           addSubMap(Map* map);
 	Map*           getParentMap();
-	int            getId();
-	void           setId(int Id);
 	void           setCoordinate(int x, int y);
 	Coordinate     getCoordiante();
 

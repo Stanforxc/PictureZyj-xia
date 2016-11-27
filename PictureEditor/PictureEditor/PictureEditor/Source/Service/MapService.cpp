@@ -2,9 +2,11 @@
 #include<exception>
 #include<list>
 
-MapService::MapService() {
+MapService::MapService()
+{
 	this->_rootMap = nullptr;
 	this->_currentMap = nullptr;
+	this->_nextId = 0;
 }
 
 MapService::~MapService() {
@@ -38,6 +40,29 @@ Map* MapService::getMapByName(std::string mapName) {
 	}
 }
 
+Map* MapService::getMapById(int id) {
+	try {
+		std::list<Map*> searchQueue;
+		std::map<Coordinate, Map*> *subMap;
+		searchQueue.push_back(this->_rootMap);
+		do {
+			Map* currentMap = *searchQueue.begin();
+			subMap = &currentMap->_subMap;
+			for (auto itr = subMap->begin(); itr != subMap->end(); itr++) {
+				searchQueue.push_back(itr->second);
+			}
+			searchQueue.pop_front();
+			if (id == currentMap->_Id) {
+				return currentMap;
+			}
+		} while (0 != searchQueue.size());
+		return nullptr;
+	}
+	catch (...) {
+		return nullptr;
+	}
+}
+
 bool MapService::addMap(int x, int y, Map* mapToAdd) {
 	try {
 		bool existFlag = false;
@@ -50,6 +75,8 @@ bool MapService::addMap(int x, int y, Map* mapToAdd) {
 			return false;
 		}
 		//add
+		mapToAdd->_Id = this->_nextId;
+		this->_nextId++;
 		mapToAdd->getParentMap()->addSubMap(mapToAdd);
 
 	}

@@ -49,6 +49,8 @@ bool Application::savaConfig() {
 		ConfigValue["LocationConfig"] = LocationConfig;
 
 		//map config --- traverse the map tree with BFS
+		MapConfig["nextId"] = this->_mapService->_nextId;
+		Json::Value mapContainer;
 		Map* currentMap = nullptr;
 		std::list<Map*> mapQueue;
 		mapQueue.push_back(this->_mapService->_rootMap);
@@ -83,9 +85,10 @@ bool Application::savaConfig() {
 			map["pictureName"] = currentMap->getName();
 
 			//append
-			MapConfig.append(map);
+			mapContainer.append(map);
 
 		} while (0!=mapQueue.size());
+		MapConfig["mapContainer"] = mapContainer;
 		ConfigValue["MapConfig"] = MapConfig;
 		
 		//output file
@@ -114,6 +117,7 @@ bool Application::loadConfig() {
 		if (configReader.parse(*(new string(configChars)), configValue)) {
 			//load location config
 			Json::Value locationConfig = configValue["LocationConfig"];
+			//for each location
 			for (auto itr=locationConfig.begin(); itr != locationConfig.end(); itr++) {
 				Location* locationItem = new Location();
 				locationItem->_locationName = (*itr)["locationName"].asString();
@@ -124,6 +128,13 @@ bool Application::loadConfig() {
 				this->_locationService->addNewLocation(locationItem);
 			}
 			//load map config
+		    Json::Value mapConfig = configValue["MapConfig"];
+			this->_mapService->_nextId = mapConfig["nextId"].asInt();
+			//for each map
+			for (auto itr = mapConfig["mapContainer"].begin(); itr != mapConfig["mapContainer"].end(); itr++) {
+
+			}
+
 
 		}
 		else {
