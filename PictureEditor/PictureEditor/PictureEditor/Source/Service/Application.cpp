@@ -32,6 +32,7 @@ bool Application::savaConfig() {
 		std::ofstream outfile;
 		outfile.open(Application::_configUrl, std::ios::out);
 
+		/********************************************************/
 		//location config
 		auto locRepo = this->_locationService->_locationRepo;
 		for (auto itr = locRepo.begin();itr != locRepo.begin(); itr++) {
@@ -48,6 +49,8 @@ bool Application::savaConfig() {
 		}
 		ConfigValue["LocationConfig"] = LocationConfig;
 
+
+		/******************************************************/
 		//map config --- traverse the map tree with BFS
 		MapConfig["nextId"] = this->_mapService->_nextId;
 		Json::Value mapContainer;
@@ -70,12 +73,12 @@ bool Application::savaConfig() {
 			coordinate["x"] = currentMap->_coordinate.x;
 			coordinate["y"] = currentMap->_coordinate.y;
 			map["coordinate"] = coordinate;
-			//map::parentmap
+			//map::parentMap
 			if (nullptr != currentMap->_parentMap) {
-				map["parentmap"] = currentMap->_parentMap->_Id;
+				map["parentMap"] = currentMap->_parentMap->_Id;
 			}
 			else {
-				map["parentmap"] = -1;
+				map["parentMap"] = -1;
 			}
 			//map::location
 			map["location"] = currentMap->getLoc()->getLocationName();
@@ -83,6 +86,8 @@ bool Application::savaConfig() {
 			map["url"] = currentMap->getUrl();
 			//map::pictureName
 			map["pictureName"] = currentMap->getName();
+			//map::description
+			map["description"] = currentMap->getDiscription();
 
 			//append
 			mapContainer.append(map);
@@ -115,6 +120,8 @@ bool Application::loadConfig() {
 		Json::Reader configReader;
 		Json::Value configValue;
 		if (configReader.parse(*(new string(configChars)), configValue)) {
+
+			/************************************/
 			//load location config
 			Json::Value locationConfig = configValue["LocationConfig"];
 			//for each location
@@ -127,19 +134,41 @@ bool Application::loadConfig() {
 				}
 				this->_locationService->addNewLocation(locationItem);
 			}
+
+			/************************************/
 			//load map config
 		    Json::Value mapConfig = configValue["MapConfig"];
 			this->_mapService->_nextId = mapConfig["nextId"].asInt();
 			//for each map
 			for (auto itr = mapConfig["mapContainer"].begin(); itr != mapConfig["mapContainer"].end(); itr++) {
-
+				//get all parameters to prepare for newing an item
+				std::string url = (*itr)["url"].asString();
+				std::string picName = (*itr)["pictureName"].asString();
+				std::string description = (*itr)["description"].asString();
+				Map*        parentMap = this->_mapService->getMapById((*itr)["parentMap"].asInt());
+				int         coordianteX = (*itr)["coordiante"]["x"].asInt();
+				int         coordianteY = (*itr)["coordiante"]["y"].asInt();
+				//new a item
+				Map* mapItem = new Map(url, picName, description, parentMap, coordianteX, coordianteY);
+				//set Id
+				mapItem->_Id = (*itr)["id"].asInt();
+				//insert to parent map
+				parentMap->_subMap.insert(
+					pair<Coordinate,Map*>(
+					*(new Coordinate(coordianteX,coordianteY)),
+					mapItem
+					)
+				);
+				//set location
+				Location* location = this->_locationService->getLocation((*itr)["location"].asString());
+				mapItem->setLoc(location);
+				location->_map = mapItem;
 			}
-
-
-		}
+			return true;
+		}//parse json successful
 		else {
 			return false;
-		}
+		}//fail to parse json
 
 	}catch (...) {
 		return false;
