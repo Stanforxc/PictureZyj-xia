@@ -136,11 +136,8 @@
     <ClCompile Include="bmp.cpp">
       <Filter>源文件\Entity</Filter>
     </ClCompile>
-<<<<<<< HEAD
     <ClCompile Include="test.cpp">
-=======
-    <ClCompile Include="main.cpp">
->>>>>>> 7e6bc0658d9ea77e72a4dd1f618d98ad371287d4
+
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
