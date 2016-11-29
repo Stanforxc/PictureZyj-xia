@@ -22,14 +22,20 @@
     <Filter Include="头文件\Json">
       <UniqueIdentifier>{a78ec229-204d-401f-9d9f-a242a51bce98}</UniqueIdentifier>
     </Filter>
-    <Filter Include="源文件\Json">
-      <UniqueIdentifier>{4c51ecec-8c03-4b29-8f06-cd342e27ef62}</UniqueIdentifier>
-    </Filter>
     <Filter Include="源文件\Entity">
       <UniqueIdentifier>{8d7a8adc-d5c4-4d02-b6ed-a90823096108}</UniqueIdentifier>
     </Filter>
     <Filter Include="源文件\Service">
       <UniqueIdentifier>{8e73f83b-d0a9-4562-92e0-6f7ff15c2197}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\Json">
+      <UniqueIdentifier>{6b4a29af-e238-4b6b-9da8-e97c3caa8191}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\Json\x86">
+      <UniqueIdentifier>{da27a2c1-c893-4fca-b2b4-fac6ee79cf38}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\Json\x64">
+      <UniqueIdentifier>{c050fc68-720e-479e-8575-25488cbe1433}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -130,10 +136,16 @@
     <ClCompile Include="bmp.cpp">
       <Filter>源文件\Entity</Filter>
     </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Library Include="Source\Json\json_vc71_libmtd.lib">
-      <Filter>源文件\Json</Filter>
+    <Library Include="Source\Json\x64\lib_json.lib">
+      <Filter>源文件\Json\x64</Filter>
+    </Library>
+    <Library Include="Source\Json\x86\lib_json.lib">
+      <Filter>源文件\Json\x86</Filter>
     </Library>
   </ItemGroup>
 </Project>
