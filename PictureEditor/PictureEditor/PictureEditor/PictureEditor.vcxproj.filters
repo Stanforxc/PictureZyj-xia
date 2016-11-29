@@ -130,6 +130,9 @@
     <ClCompile Include="bmp.cpp">
       <Filter>源文件\Entity</Filter>
     </ClCompile>
+    <ClCompile Include="test.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Library Include="Source\Json\json_vc71_libmtd.lib">
