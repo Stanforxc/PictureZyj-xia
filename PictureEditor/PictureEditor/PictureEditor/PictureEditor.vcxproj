@@ -19,7 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="bmp.h" />
+    <ClInclude Include="Header\Entity\bmp.h" />
     <ClInclude Include="Header\Entity\image.h" />
     <ClInclude Include="Header\Entity\location.h" />
     <ClInclude Include="Header\Entity\map.h" />
@@ -48,10 +48,10 @@
     <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="bmp.cpp" />
     <ClCompile Include="main.cpp">
       <RuntimeLibrary Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
+    <ClCompile Include="Source\Entity\bmp.cpp" />
     <ClCompile Include="Source\Entity\image.cpp" />
     <ClCompile Include="Source\Entity\location.cpp" />
     <ClCompile Include="Source\Entity\map.cpp" />

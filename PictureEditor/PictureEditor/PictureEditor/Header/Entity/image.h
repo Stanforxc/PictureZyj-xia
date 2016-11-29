@@ -11,7 +11,7 @@
 #include<map>
 #include<iostream>
 #include<io.h>
-#include "../../bmp.h"
+#include "bmp.h"
 
 using namespace std;
 

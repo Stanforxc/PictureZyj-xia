@@ -99,7 +99,7 @@
     <ClInclude Include="Header\Service\Application.h">
       <Filter>头文件\Service</Filter>
     </ClInclude>
-    <ClInclude Include="bmp.h">
+    <ClInclude Include="Header\Entity\bmp.h">
       <Filter>头文件\Entity</Filter>
     </ClInclude>
   </ItemGroup>
@@ -133,11 +133,11 @@
     <ClCompile Include="Source\Service\Application.cpp">
       <Filter>源文件\Service</Filter>
     </ClCompile>
-    <ClCompile Include="bmp.cpp">
-      <Filter>源文件\Entity</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Entity\bmp.cpp">
+      <Filter>源文件\Entity</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
