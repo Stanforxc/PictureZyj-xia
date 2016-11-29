@@ -1,2 +1,6 @@
 #TargetFrameworkVersion=v4.0:PlatformToolSet=v140:EnableManagedIncrementalBuild=false:VCToolArchitecture=Native32Bit:WindowsTargetPlatformVersion=8.1
+<<<<<<< HEAD
 Debug|x64|D:\pictureEditor\PictureEditor\PictureEditor\|
+=======
+Debug|x64|E:\VisualStudioSpace\DesignPattern\PictureEditor\PictureEditor\|
+>>>>>>> 7e6bc0658d9ea77e72a4dd1f618d98ad371287d4
