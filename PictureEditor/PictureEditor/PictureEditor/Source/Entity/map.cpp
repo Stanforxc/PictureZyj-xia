@@ -41,7 +41,7 @@ bool Map::addSubMap(Map* map) {
 			return false;
 		}
 	}
-	this->_subMap.insert(pair<Coordinate, Map*>(Coordinate(map->_coordinate.x, map->_coordinate.y), map));
+	this->_subMap.insert(pair<Coordinate, Map*>(*new Coordinate(map->_coordinate.x, map->_coordinate.y), map));
 	return true;
 }
 
@@ -49,13 +49,7 @@ Map* Map::getParentMap() {
 	return this->_parentMap;
 }
 
-int  Map::getId() {
-	return this->_Id;
-}
 
-void Map::setId(int Id) {
-	this->_Id = Id;
-}
 
 void Map::setCoordinate(int x, int y) {
 	this->_coordinate.x = x;

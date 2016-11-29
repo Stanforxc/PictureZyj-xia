@@ -3,14 +3,15 @@
 #ifndef _IMAGE_H_
 #define _IMAGE_H_
 
+#include<Afxwin.h>
+#include<atlimage.h>
 #include "location.h"
 #include<string>
 #include<vector>
 #include<map>
-#include<atlimage.h>
 #include<iostream>
 #include<io.h>
-#include<Afxwin.h>
+#include "../../bmp.h"
 
 using namespace std;
 
@@ -19,17 +20,17 @@ class Image
 public:
 	Image();
 	Image(string url, string picName, string des);
-	virtual bool read(string url);
+	virtual bool read(string u);
 	void getFiles(string path, vector<string>& files);  //获取文件名
 	virtual bool readDir(string dUrl, int& sucRate);
 	virtual bool save(string url);
 	virtual bool del(string url);
 	virtual Location* getLoc() { return loc; }
-	virtual bool setLoc(Location* loca) { loc = loca; }
+	virtual bool setLoc(Location* loca) { loc = loca; return true; }
 	virtual string getName() { return picName; }
-	virtual bool setName(string name) { this->picName = name; }
-	virtual bool getSolution(CImage* image, int& width, int& height);
-	virtual bool setSolution(CImage *pImage, CImage *ResultImage, int StretchHeight, int StretchWidth);   //设置分辨率
+	virtual bool setName(string name) { this->picName = name; return true; }
+	virtual bool getSolution(HBITMAP& hr, int& width, int& height);
+	virtual HBITMAP setSolution(HBITMAP hr, int width, int height);   //设置分辨率
 
 
 
@@ -50,6 +51,7 @@ private:
 	map<string, vector<CImage> >  imageMap;
 	string picName;
 	string description;
+	bmp vp;
 };
 
 

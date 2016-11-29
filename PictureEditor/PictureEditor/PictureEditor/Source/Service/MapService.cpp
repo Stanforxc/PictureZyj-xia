@@ -78,6 +78,7 @@ bool MapService::addMap(int x, int y, Map* mapToAdd) {
 		mapToAdd->_Id = this->_nextId;
 		this->_nextId++;
 		mapToAdd->getParentMap()->addSubMap(mapToAdd);
+		return true;
 
 	}
 	catch (...) {
@@ -107,7 +108,7 @@ bool MapService::deleteMap(Map* mapToDelete) {
 		}
 		//free this map and all its submaps
 		std::list<Map*> deleteQueue;
-		Map* currentMap;
+		currentMap = nullptr;
 		deleteQueue.push_back(mapToDelete);
 		do {
 			currentMap = *deleteQueue.begin();

@@ -78,9 +78,6 @@
     <ClInclude Include="Header\Entity\image.h">
       <Filter>头文件\Entity</Filter>
     </ClInclude>
-    <ClInclude Include="Header\Entity\Iterator.h">
-      <Filter>头文件\Entity</Filter>
-    </ClInclude>
     <ClInclude Include="Header\Entity\location.h">
       <Filter>头文件\Entity</Filter>
     </ClInclude>
@@ -96,6 +93,9 @@
     <ClInclude Include="Header\Service\Application.h">
       <Filter>头文件\Service</Filter>
     </ClInclude>
+    <ClInclude Include="bmp.h">
+      <Filter>头文件\Entity</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="PictureEditor.rc">
@@ -106,15 +106,6 @@
     <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source\Json\json_reader.cpp">
-      <Filter>源文件\Json</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Json\json_value.cpp">
-      <Filter>源文件\Json</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Json\json_writer.cpp">
-      <Filter>源文件\Json</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Entity\image.cpp">
       <Filter>源文件\Entity</Filter>
     </ClCompile>
@@ -136,5 +127,13 @@
     <ClCompile Include="Source\Service\Application.cpp">
       <Filter>源文件\Service</Filter>
     </ClCompile>
+    <ClCompile Include="bmp.cpp">
+      <Filter>源文件\Entity</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="Source\Json\json_vc71_libmtd.lib">
+      <Filter>源文件\Json</Filter>
+    </Library>
   </ItemGroup>
 </Project>

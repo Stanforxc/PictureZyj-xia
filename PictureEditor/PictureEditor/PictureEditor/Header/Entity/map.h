@@ -23,6 +23,10 @@ struct Coordinate {
 		this->x = xx;
 		this->y = yy;
 	}
+
+	bool operator < (Coordinate para) const {
+		return this->x < para.x;
+	}
 };
 
 class Map :

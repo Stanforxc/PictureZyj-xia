@@ -27,18 +27,18 @@ Image::~Image()
 
 //加载单张图片
 bool Image::read(string u) {
-	CImage* Image = new CImage();
-	Image->Load(u.c_str);
+	CImage img;
+	img.Load(u.c_str());
 
 	try {
-		if (Image->IsNull) {
+		if (img.IsNull()) {
 			throw 1;
 			return false;
 		}
 
 		map<string, vector<CImage> >::iterator it = imageMap.find(u);
 		if (it != imageMap.end()) {
-			it->second.push_back(*Image);
+			it->second.push_back(img);
 		}
 		else {
 			imageMap.insert(make_pair(u, vector<CImage>()));
@@ -46,14 +46,14 @@ bool Image::read(string u) {
 
 		
 	}
-	catch (int i) {
+	catch (...) {
 		cerr << "照片不存在，请重新输入路径" << endl;
 		string newUrl;
 		cin >> newUrl;
 		url = newUrl;
 	}
 	
-	delete Image;
+	//delete img;
 }
 
 //加载文件加下所有文件
@@ -104,78 +104,139 @@ void Image::getFiles(string path, vector<string>& files)
 }
 
 bool Image::save(string dUrl) {
-	CImage* Image = new CImage();
+	CImage img;
 	string name = "test.jpg";    //文件名 默认为"test.jpg"
 
 	string comb = dUrl + name;
-	Image->Save(comb.c_str);
+	img.Save(comb.c_str());
 
 	//查看是否保存成功
-	Image->Load(comb.c_str);
+	img.Load(comb.c_str());
 
-	if (Image->IsNull) {
+	if (img.IsNull()) {
 		return false;
 	}
 	return true;
 
-	delete Image;
+	//delete img;
 }
 
 bool Image::del(string url) {
-	remove(url.c_str);
+	remove(url.c_str());
 
 	//查看是否删除成功
 
-	CImage* Image = new CImage();
+	CImage img;
 
-	if (Image->IsNull) {
+	if (img.IsNull()) {
 		return true;
 	}
 	return false;
 
-	delete Image;
+	//delete 9;
 }
 
-bool Image::getSolution(CImage* Image,int& width, int& height) {
-	width = Image->GetWidth;
-	height = Image->GetHeight;
+bool Image::getSolution(HBITMAP& hr,int& width, int& height) {
+	BITMAP bmp;
+	::GetObject(hr, sizeof(bmp), (LPSTR)&bmp);
+	width = bmp.bmWidth;
+	height = bmp.bmHeight;
+
+	/*
+	CComPtr<IPicture> pPict;
+	long hmWidth, hmHeight;
+
+	HDC dc = GetDC(GetDesktopWindow());
+	HDC memdc = CreateCompatibleDC(dc);
+	HBITMAP hbm = CreateCompatibleBitmap(dc, width, height);
+	HGDIOBJ hOld = SelectObject(memdc, hbm);
+	ReleaseDC(GetDesktopWindow(), dc);
+
+	hr = pPict->get_Width(&hmWidth);
+	_ASSERT(SUCCEEDED(hr));
+	hr = pPict->get_Height(&hmHeight);
+	_ASSERT(SUCCEEDED(hr));
+
+	hr = pPict->Render(memdc, 0, 0, cx, cy, 0, hmHeight, hmWidth, -hmHeight, NULL);
+	_ASSERT(SUCCEEDED(hr));
+	SelectObject(memdc, hOld);
+	DeleteDC(memdc);
+	//width = Image.GetWidth;
+	//height = Image.GetHeight;
+	*/
+
 	return true;
 }
 
-bool Image::setSolution(CImage *pImage, CImage *ResultImage, int StretchHeight, int StretchWidth) {
-	if (pImage->IsDIBSection) {	
-		// 取得 pImage 的 DC
-		CDC* pImageDC1 = CDC::FromHandle(pImage->GetDC);
-		CBitmap* bitmap1 = pImageDC1->GetCurrentBitmap();
-		BITMAP bmpInfo;
-		bitmap1->GetBitmap(&bmpInfo);
+HBITMAP Image::setSolution(HBITMAP hr, int width,int height) {
 
-		// 建立新的 CImage
-		ResultImage->Create(StretchWidth, StretchHeight, bmpInfo.bmBitsPixel);
-		CDC* ResultImageDC = CDC::FromHandle(ResultImage->GetDC());
+	BITMAP bmpInfo;
+	GetObject(hr, sizeof(BITMAP), &bmpInfo);
+	SIZE oldSize;
+	oldSize.cx = bmpInfo.bmWidth;
+	oldSize.cy = bmpInfo.bmHeight;
 
-		ResultImageDC->SetStretchBltMode(HALFTONE);
 
-		SetBrushOrgEx(ResultImageDC->m_hDC, 0, 0, NULL);
+	HDC hdc = GetDC(NULL);
+	HDC hDCSrc = CreateCompatibleDC(hdc);
+	HBITMAP hOldBmpSrc = (HBITMAP)SelectObject(hDCSrc, hr);
 
-		StretchBlt(*ResultImageDC, 0, 0, StretchWidth, StretchHeight, *pImageDC1, 0, 0, pImage->GetWidth(), pImage->GetHeight(), SRCCOPY);
+ 
+	HDC hDCDst = CreateCompatibleDC(hdc);
+	HBITMAP hBmpDst = CreateCompatibleBitmap(hdc, width, height);
+	HBITMAP hOldBmpDst = (HBITMAP)SelectObject(hDCDst, hBmpDst);
 
-		pImage->ReleaseDC();
-		ResultImage->ReleaseDC();
+
+	StretchBlt(hDCDst, 0, 0, oldSize.cx, oldSize.cy, hDCSrc, 0, 0, width, height, SRCCOPY);
+
+
+	SelectObject(hDCSrc, hOldBmpSrc);
+	SelectObject(hDCDst, hOldBmpDst);
+	DeleteDC(hDCSrc);
+	DeleteDC(hDCDst);
+	ReleaseDC(NULL, hdc);
+
+	return hBmpDst;
+
+
+	/*
+	if (pImage.IsDIBSection) {
+	// 取得 pImage 的 DC
+	CDC* pImageDC1 = CDC::FromHandle(pImage.GetDC);
+	CBitmap* bitmap1 = pImageDC1->GetCurrentBitmap();
+	BITMAP bmpInfo;
+	bitmap1->GetBitmap(&bmpInfo);
+
+	// 建立新的 CImage
+	ResultImage->Create(StretchWidth, StretchHeight, bmpInfo.bmBitsPixel);
+	CDC* ResultImageDC = CDC::FromHandle(ResultImage->GetDC());
+
+	ResultImageDC->SetStretchBltMode(HALFTONE);
+
+	SetBrushOrgEx(ResultImageDC->m_hDC, 0, 0, NULL);
+
+	StretchBlt(*ResultImageDC, 0, 0, StretchWidth, StretchHeight, *pImageDC1, 0, 0, pImage.GetWidth(), pImage.GetHeight(), SRCCOPY);
+
+	pImage.ReleaseDC();
+	ResultImage->ReleaseDC();
 	}
+	*/
 }
 
 
 bool Image::undoSolution() {
 	urlPrev.erase(urlPrev.end() - 1);
+	return true;
 }
 
 bool Image::redoSolution() {
 	urlPrev.push_back(url);
+	return true;
 }
 
 bool Image::setDiscription(string comment) {
 	description = comment;
+	return true;
 }
 
 string Image::getDiscription() {

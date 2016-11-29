@@ -19,8 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="bmp.h" />
     <ClInclude Include="Header\Entity\image.h" />
-    <ClInclude Include="Header\Entity\Iterator.h" />
     <ClInclude Include="Header\Entity\location.h" />
     <ClInclude Include="Header\Entity\map.h" />
     <ClInclude Include="Header\Entity\picture.h" />
@@ -48,16 +48,17 @@
     <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="bmp.cpp" />
     <ClCompile Include="Source\Entity\image.cpp" />
     <ClCompile Include="Source\Entity\location.cpp" />
     <ClCompile Include="Source\Entity\map.cpp" />
     <ClCompile Include="Source\Entity\picture.cpp" />
-    <ClCompile Include="Source\Json\json_reader.cpp" />
-    <ClCompile Include="Source\Json\json_value.cpp" />
-    <ClCompile Include="Source\Json\json_writer.cpp" />
     <ClCompile Include="Source\Service\Application.cpp" />
     <ClCompile Include="Source\Service\LocationService.cpp" />
     <ClCompile Include="Source\Service\MapService.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="Source\Json\json_vc71_libmtd.lib" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{DD217CF1-C0AB-4088-BD9E-A45E60B695A5}</ProjectGuid>
@@ -124,7 +125,7 @@
       <SDLCheck>true</SDLCheck>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>json_vc71_libmtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>$(ProjectDir)/Source/Json/json_vc71_libmtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

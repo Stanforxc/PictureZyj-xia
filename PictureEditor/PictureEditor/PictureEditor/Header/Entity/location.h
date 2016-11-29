@@ -3,8 +3,7 @@
 #ifndef _LOCATION_H_
 #define _LOCATION_H_
 
-#include "Iterator.h"
-#include "../Service/LocationService.h"
+
 #include<set>
 #include<list>
 #include<queue>

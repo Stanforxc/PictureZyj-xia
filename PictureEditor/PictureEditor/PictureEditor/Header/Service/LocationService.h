@@ -4,14 +4,13 @@
 #define _LOCATIONSERVICE_H_
 
 #include "../Entity/location.h"
-#include "../Entity/map.h"
 #include <list>
 
-class Application;
+extern class Application;
 
 class LocationService {
 
-friend class Application;
+	friend class Application;
 public:
 	LocationService();
 	~LocationService();
