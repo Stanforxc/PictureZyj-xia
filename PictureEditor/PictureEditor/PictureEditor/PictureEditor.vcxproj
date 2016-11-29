@@ -59,7 +59,6 @@
     <ClCompile Include="Source\Service\Application.cpp" />
     <ClCompile Include="Source\Service\LocationService.cpp" />
     <ClCompile Include="Source\Service\MapService.cpp" />
-    <ClCompile Include="test.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="Source\Json\x64\lib_json.lib" />
