@@ -1,0 +1,389 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+    <Filter Include="Back-End">
+      <UniqueIdentifier>{f065e078-7012-45b1-9d56-4b53dd0c2fbc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Back-End\HeaderFiles">
+      <UniqueIdentifier>{c856b86b-84bd-4c09-aaa8-6355c46aee6b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Back-End\SourceFiles">
+      <UniqueIdentifier>{66d9d36f-090e-4d60-9725-ce0285269611}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Back-End\HeaderFiles\Entity">
+      <UniqueIdentifier>{82f23582-001e-450c-8a71-d2ae6ea74fda}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Back-End\HeaderFiles\Service">
+      <UniqueIdentifier>{dda94a1e-4bd8-4ed4-9d67-376410de9a0e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Back-End\HeaderFiles\Json">
+      <UniqueIdentifier>{0cbc3ac0-308f-43ca-ac49-f3d986d9be6f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Back-End\SourceFiles\Entity">
+      <UniqueIdentifier>{8f40f2da-39af-4b38-a17c-7f92e69c533c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Back-End\SourceFiles\Service">
+      <UniqueIdentifier>{4ccf7ff0-6d33-4b4b-a6af-2c2521dd9814}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Back-End\SourceFiles\Json">
+      <UniqueIdentifier>{df4d27e6-072a-44b3-8c3c-141013a57fc5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Back-End\SourceFiles\Json\x86">
+      <UniqueIdentifier>{8260ee61-25fb-4078-9154-5460217cbad8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Back-End\SourceFiles\Json\x64">
+      <UniqueIdentifier>{beb1dc65-585e-4474-952e-650ff5b736ce}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="BackGround.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BMPLoader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BottomWindows.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CloseButton.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CoordConverter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CursorManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FileExplorer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FontEngine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GLButton.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GLCircle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GLExtension.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GLSetup.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GLText.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GLTexture.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GLVertexBuffer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GLWindowBase.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageArea.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageFileFind.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="NewFileLoader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PicZoomDlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PicZoomUtil.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayButton.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ScreenCapture.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SlideShow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Timer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UnProject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ZoomText.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PicZoom.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Back-End\Source\Service\Application.cpp">
+      <Filter>Back-End\SourceFiles\Service</Filter>
+    </ClCompile>
+    <ClCompile Include="Back-End\Source\Service\LocationService.cpp">
+      <Filter>Back-End\SourceFiles\Service</Filter>
+    </ClCompile>
+    <ClCompile Include="Back-End\Source\Service\MapService.cpp">
+      <Filter>Back-End\SourceFiles\Service</Filter>
+    </ClCompile>
+    <ClCompile Include="Back-End\Source\Entity\bmp.cpp">
+      <Filter>Back-End\SourceFiles\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="Back-End\Source\Entity\image.cpp">
+      <Filter>Back-End\SourceFiles\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="Back-End\Source\Entity\location.cpp">
+      <Filter>Back-End\SourceFiles\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="Back-End\Source\Entity\map.cpp">
+      <Filter>Back-End\SourceFiles\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="Back-End\Source\Entity\picture.cpp">
+      <Filter>Back-End\SourceFiles\Entity</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="BackGround.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BMPLoader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BottomWindows.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CloseButton.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Consts.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CoordConverter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CursorManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FileExplorer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FontEngine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GLButton.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GLCircle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GLExtension.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GLSetup.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GLText.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GLTexture.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GLVertexBuffer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GLWindowBase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageArea.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageFileFind.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="NewFileLoader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PicZoomDlg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PicZoomUtil.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayButton.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ScreenCapture.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SlideShow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Timer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UnProject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ZoomText.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PicZoom.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Back-End\Header\Entity\bmp.h">
+      <Filter>Back-End\HeaderFiles\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Back-End\Header\Entity\image.h">
+      <Filter>Back-End\HeaderFiles\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Back-End\Header\Entity\location.h">
+      <Filter>Back-End\HeaderFiles\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Back-End\Header\Entity\map.h">
+      <Filter>Back-End\HeaderFiles\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Back-End\Header\Entity\picture.h">
+      <Filter>Back-End\HeaderFiles\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Back-End\Header\Entity\resource.h">
+      <Filter>Back-End\HeaderFiles\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Back-End\Header\Json\allocator.h">
+      <Filter>Back-End\HeaderFiles\Json</Filter>
+    </ClInclude>
+    <ClInclude Include="Back-End\Header\Json\assertions.h">
+      <Filter>Back-End\HeaderFiles\Json</Filter>
+    </ClInclude>
+    <ClInclude Include="Back-End\Header\Json\autolink.h">
+      <Filter>Back-End\HeaderFiles\Json</Filter>
+    </ClInclude>
+    <ClInclude Include="Back-End\Header\Json\config.h">
+      <Filter>Back-End\HeaderFiles\Json</Filter>
+    </ClInclude>
+    <ClInclude Include="Back-End\Header\Json\features.h">
+      <Filter>Back-End\HeaderFiles\Json</Filter>
+    </ClInclude>
+    <ClInclude Include="Back-End\Header\Json\forwards.h">
+      <Filter>Back-End\HeaderFiles\Json</Filter>
+    </ClInclude>
+    <ClInclude Include="Back-End\Header\Json\json.h">
+      <Filter>Back-End\HeaderFiles\Json</Filter>
+    </ClInclude>
+    <ClInclude Include="Back-End\Header\Json\json_tool.h">
+      <Filter>Back-End\HeaderFiles\Json</Filter>
+    </ClInclude>
+    <ClInclude Include="Back-End\Header\Json\reader.h">
+      <Filter>Back-End\HeaderFiles\Json</Filter>
+    </ClInclude>
+    <ClInclude Include="Back-End\Header\Json\value.h">
+      <Filter>Back-End\HeaderFiles\Json</Filter>
+    </ClInclude>
+    <ClInclude Include="Back-End\Header\Json\version.h">
+      <Filter>Back-End\HeaderFiles\Json</Filter>
+    </ClInclude>
+    <ClInclude Include="Back-End\Header\Json\writer.h">
+      <Filter>Back-End\HeaderFiles\Json</Filter>
+    </ClInclude>
+    <ClInclude Include="Back-End\Header\Service\Application.h">
+      <Filter>Back-End\HeaderFiles\Service</Filter>
+    </ClInclude>
+    <ClInclude Include="Back-End\Header\Service\LocationService.h">
+      <Filter>Back-End\HeaderFiles\Service</Filter>
+    </ClInclude>
+    <ClInclude Include="Back-End\Header\Service\MapService.h">
+      <Filter>Back-End\HeaderFiles\Service</Filter>
+    </ClInclude>
+    <ClInclude Include="ProcessManger.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\CloseButton.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\MakeToCenter.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Next.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\PicZoom.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Play.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Previous.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\RotateAntiClock.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\RotateClock.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\RoundRect.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Startuplogo.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Zoom1To1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\ZoomMin.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\ZoomPlus.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="PicZoom.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\PicZoom.rc2">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="Back-End\Source\Json\x64\lib_json.lib">
+      <Filter>Back-End\SourceFiles\Json\x64</Filter>
+    </Library>
+    <Library Include="Back-End\Source\Json\x86\lib_json.lib">
+      <Filter>Back-End\SourceFiles\Json\x86</Filter>
+    </Library>
+  </ItemGroup>
+</Project>
