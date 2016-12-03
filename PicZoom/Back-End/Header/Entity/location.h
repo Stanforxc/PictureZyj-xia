@@ -36,6 +36,7 @@ public:
 
 	std::string                getDescription();
 	void                       setDescription(std::string decription);
+	std::list<Location*>       getSubLocation();
 
 	
 private:

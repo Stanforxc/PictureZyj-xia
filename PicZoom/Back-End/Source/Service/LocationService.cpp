@@ -54,6 +54,8 @@ void LocationService::setCurrentLocation(Location* locationToSet) {
 	this->_currentLocation = nullptr;
 }
 
+std::list<Location*> LocationService::getSubLocation
+
 
 
 

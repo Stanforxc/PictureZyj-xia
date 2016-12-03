@@ -45,6 +45,7 @@ public:
 	Map*           getParentMap();
 	void           setCoordinate(int x, int y);
 	Coordinate     getCoordiante();
+	std::list<Map*> getSubMapList();
 
 
 private:

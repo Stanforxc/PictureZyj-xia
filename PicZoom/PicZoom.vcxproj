@@ -199,7 +199,6 @@
     <ClInclude Include="PicZoomDlg.h" />
     <ClInclude Include="PicZoomUtil.h" />
     <ClInclude Include="PlayButton.h" />
-    <ClInclude Include="ProcessManger.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="ScreenCapture.h" />
     <ClInclude Include="SlideShow.h" />

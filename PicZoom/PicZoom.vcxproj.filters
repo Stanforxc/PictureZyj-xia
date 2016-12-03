@@ -320,9 +320,6 @@
     <ClInclude Include="Back-End\Header\Service\MapService.h">
       <Filter>Back-End\HeaderFiles\Service</Filter>
     </ClInclude>
-    <ClInclude Include="ProcessManger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\CloseButton.bmp">

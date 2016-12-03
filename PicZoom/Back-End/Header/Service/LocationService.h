@@ -20,6 +20,7 @@ public:
 	bool      deleteLocation(Location* locationToDelete);
 	Location* getCurrentLocation();
 	void      setCurrentLocation(Location* locationToSet);
+	
 
 
 	

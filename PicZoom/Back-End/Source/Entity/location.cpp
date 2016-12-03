@@ -76,4 +76,15 @@ void Location::setDescription(std::string description) {
 	this->_description = description;
 }
 
+std::list<Location*> Location::getSubLocation() {
+	std::list<Location*> ret;
+	std::list<Map*> subMaps = this->_map->getSubMapList();
+	
+	for (auto itr = subMaps.begin(); itr != subMaps.end(); itr++) {
+		ret.push_back((*itr)->getLoc());
+	}
+
+	return ret;
+}
+
 

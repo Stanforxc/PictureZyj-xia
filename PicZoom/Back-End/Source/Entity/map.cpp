@@ -59,3 +59,11 @@ void Map::setCoordinate(int x, int y) {
 Coordinate Map::getCoordiante(){
 	return this->_coordinate;
 }
+
+std::list<Map*> Map::getSubMapList() {
+	std::list<Map*> ret;
+	for (auto itr = this->_subMap.begin(); itr != this->_subMap.begin(); itr++) {
+		ret.push_back(itr->second);
+	}
+	return ret;
+}

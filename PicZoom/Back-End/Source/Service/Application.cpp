@@ -4,10 +4,11 @@
 
 std::string Application::_configUrl = "Config/config.json";
 
-Application::Application() {
+Application::Application(CPicZoom* picZoom) {
 	this->_locationService = new LocationService();
 	this->_mapService = new MapService();
 	this->loadConfig();
+	this->_PicZoom = picZoom;
 }
 
 Application::~Application() {
