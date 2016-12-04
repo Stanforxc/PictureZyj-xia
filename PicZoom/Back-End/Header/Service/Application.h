@@ -9,11 +9,11 @@
 #include "../Entity/picture.h"
 
 
-class CPicZoom;
+class CPicZoomDlg;
 
 class Application {
 public:
-	Application(CPicZoom* picZoom);
+	Application(CPicZoomDlg* picZoom);
 	~Application();
 
 	LocationService* getLocationService();
@@ -32,18 +32,18 @@ private:
 	//dispatcher commond
 	bool dispatchCommond(std::list<string> comList);
 
-	//commonds                                          //commonds:
-	bool                       cdLoc(std::string name); //cd
-	void                       mkLoc(std::string name); //mkloc
-	void                       deLoc(std::string name); //deloc
-	std::list<Location*>       lsLoc();                 //lsloc
-	std::list<Picture*>        lsPic();                 //lspic
-	void                       adPic(std::string url);  //adpic
-	void                       dePic();                 //depic
-	void                       ldPic(std::string name); //ldpic
-	void                       ldMap();                 //ldmap
-	void                       adMap();                 //admap
-	void                       deMap();                 //demap
+	//commonds                                                            //commonds:
+	bool                       cdLoc(std::string name);                   //cd
+	void                       mkLoc(std::string name);                   //mkloc
+	void                       deLoc(std::string name);                   //deloc
+	void                       lsLoc();                                   //lsloc
+	void                       lsPic();                                   //lspic
+	void                       adPic(std::string url, std::string name);  //adpic
+	void                       dePic(std::string name);                   //depic
+	void                       ldPic(std::string name);                   //ldpic
+	void                       ldMap();                                   //ldmap
+	void                       adMap(std::string url, std::string name);  //admap
+	void                       deMap(std::string name);                                   //demap
 	
 
 
@@ -53,7 +53,7 @@ private:
 	LocationService*          _locationService;
 	MapService*               _mapService;
 	std::list<Location*>      _locationPath;
-	CPicZoom*                 _PicZoom;
+	CPicZoomDlg*              _PicZoom;
 };
 
 #endif

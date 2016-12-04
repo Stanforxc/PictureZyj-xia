@@ -4,7 +4,7 @@
 
 std::string Application::_configUrl = "Config/config.json";
 
-Application::Application(CPicZoom* picZoom) {
+Application::Application(CPicZoomDlg* picZoom) {
 	this->_locationService = new LocationService();
 	this->_mapService = new MapService();
 	this->loadConfig();
@@ -196,5 +196,66 @@ std::list<string> Application::parseCommond(std::string commond) {
 }
 
 bool Application::dispatchCommond(std::list<string> comList) {
+	if (3 < comList.size()) {
+		return false;
+	}
+
+	std::string commond = comList.front();
+
+	//cd
+	if(0 == commond.compare("cd")) {
+		this->cdLoc(comList.back());
+	}
+
+	//mkloc
+	if(0 == commond.compare("mkloc")) {
+		this->mkLoc(comList.back());
+	}
+
+	//deloc
+	if (0 == commond.compare("deloc")) {
+		this->deLoc(comList.back());
+	}
+
+	//lsloc
+	if (0 == commond.compare("lsloc")) {
+		this->lsLoc();
+	}
+
+	//lspic
+	if (0 == commond.compare("lspic")) {
+		this->lsPic();
+	}
+
+	//adpic
+	if (0 == commond.compare("adpic")) {
+		this->adPic(*(comList.begin()++), comList.back());
+	}
+
+	//depic
+	if (0 == commond.compare("depic")) {
+		this->dePic(comList.back());
+	}
+
+	//ldpic
+	if (0 == commond.compare("ldpic")) {
+		this->ldPic(comList.back());
+	}
+
+	//ldmap
+	if (0 == commond.compare("ldmap")) {
+		this->ldMap();
+	}
+
+	//admap
+	if (0 == commond.compare("admap")) {
+		this->adMap(*(comList.begin()++), comList.back());
+	}
+
+	//demap
+	if (0 == commond.compare("demap")) {
+		this->deMap(comList.back());
+	}
+
 
 }
