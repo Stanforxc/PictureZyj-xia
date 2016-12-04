@@ -74,7 +74,7 @@
       <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Link>
-      <AdditionalDependencies>opengl32.lib;glu32.lib;gdiplus.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;glu32.lib;gdiplus.lib;$(ProjectDir)Back-End\Source\Json\x86\lib_json.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <TargetMachine>MachineX86</TargetMachine>
@@ -112,14 +112,30 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Back-End\Source\Entity\bmp.cpp" />
-    <ClCompile Include="Back-End\Source\Entity\image.cpp" />
-    <ClCompile Include="Back-End\Source\Entity\location.cpp" />
-    <ClCompile Include="Back-End\Source\Entity\map.cpp" />
-    <ClCompile Include="Back-End\Source\Entity\picture.cpp" />
-    <ClCompile Include="Back-End\Source\Service\Application.cpp" />
-    <ClCompile Include="Back-End\Source\Service\LocationService.cpp" />
-    <ClCompile Include="Back-End\Source\Service\MapService.cpp" />
+    <ClCompile Include="Back-End\Source\Entity\bmp.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Back-End\Source\Entity\image.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Back-End\Source\Entity\location.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Back-End\Source\Entity\map.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Back-End\Source\Entity\picture.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Back-End\Source\Service\Application.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Back-End\Source\Service\LocationService.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Back-End\Source\Service\MapService.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="BackGround.cpp" />
     <ClCompile Include="BMPLoader.cpp" />
     <ClCompile Include="BottomWindows.cpp" />

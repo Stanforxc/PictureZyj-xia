@@ -28,7 +28,7 @@ Image::~Image()
 //加载单张图片
 bool Image::read(string u) {
 	CImage img;
-	img.Load(u.c_str());
+	//img.Load(u.c_str());
 
 	try {
 		if (img.IsNull()) {
@@ -108,10 +108,10 @@ bool Image::save(string dUrl) {
 	string name = "test.jpg";    //文件名 默认为"test.jpg"
 
 	string comb = dUrl + name;
-	img.Save(comb.c_str());
+	//img.Save(comb.c_str());
 
 	//查看是否保存成功
-	img.Load(comb.c_str());
+	//img.Load(comb.c_str());
 
 	if (img.IsNull()) {
 		return false;

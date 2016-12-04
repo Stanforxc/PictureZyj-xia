@@ -175,3 +175,26 @@ bool Application::loadConfig() {
 		return false;
 	}
 }
+
+std::list<string> Application::parseCommond(std::string commond) {
+	std::list<string> ret;
+	int firstFlag = 0, secondFlag = 0;
+	int length = commond.size();
+	while (firstFlag < length) {
+		while (commond[secondFlag] != ' ' && secondFlag != length) {
+			secondFlag++;
+		}
+		ret.push_back( commond.substr(firstFlag, secondFlag-firstFlag) );
+		//ignore all the space
+		firstFlag = secondFlag;
+		while (firstFlag < length && commond[firstFlag] == ' ') {
+			firstFlag++;
+		}
+		secondFlag = firstFlag;
+	}
+	return ret;
+}
+
+bool Application::dispatchCommond(std::list<string> comList) {
+
+}

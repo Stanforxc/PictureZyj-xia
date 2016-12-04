@@ -19,6 +19,7 @@ BEGIN_MESSAGE_MAP(CPicZoomApp, CWinApp)
 END_MESSAGE_MAP()
 
 
+
 // CPicZoomApp construction
 
 CPicZoomApp::CPicZoomApp()
@@ -94,6 +95,8 @@ BOOL CPicZoomApp::InitInstance()
 	freopen("CONIN$","r+t",stdin);
 	
 	
+	
+
 
 	/*
 	system("pause");
