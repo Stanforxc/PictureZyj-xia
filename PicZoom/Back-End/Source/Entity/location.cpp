@@ -16,12 +16,16 @@ Location::Location(std::string locationName, std::string description, Map* map) 
 }
 
 Location::~Location() {
-	try {
-		delete this->_map;
+	for (auto itr = this->_pictureContainer.begin(); itr != this->_pictureContainer.end(); itr++) {
+		//delete all picture
+		std::string path = "Location\\" + this->_locationName + "\\" + (*itr)->getName();
+		CString fileUrl =("%s",path.c_str());
+		DeleteFile(fileUrl.AllocSysString());
 	}
-	catch (...) {
-		//ignore, maybe delete in another place
-	}
+	//delete map
+	std::string mapPath = "Location\\" + this->_locationName + "\\" + this->_map->getName();
+	CString mapUrl = ("%s", mapPath.c_str());
+	DeleteFile(mapUrl.AllocSysString());
 }
 
 
@@ -33,11 +37,14 @@ void Location::setMap(Map* map) {
 	this->_map = map;
 }
 
-list<std::string> Location::getPictureContainer() {
+std::list<Picture*> Location::getPictureContainer() {
 	return this->_pictureContainer;
 }
 
-bool Location::addToPictureContainer(std::string pictureToAdd) {
+bool Location::addToPictureContainer(Picture* pictureToAdd) {
+	if (false == pictureToAdd) {
+		return false;
+	}
 	auto itr = std::find(this->_pictureContainer.begin(), this->_pictureContainer.end(), pictureToAdd);
 	if (itr == this->_pictureContainer.end()) {
 		this->_pictureContainer.push_back(pictureToAdd);
@@ -50,14 +57,13 @@ bool Location::addToPictureContainer(std::string pictureToAdd) {
 
 
 bool Location::deletePictureFromContainer(std::string pictureToDelete) {
-	auto itr = std::find(this->_pictureContainer.begin(), this->_pictureContainer.end(), pictureToDelete);
-	if (itr != this->_pictureContainer.end()) {
-		this->_pictureContainer.remove(*itr);
-		return true;
+	for (auto itr = this->_pictureContainer.begin(); itr != this->_pictureContainer.end(); itr++) {
+		if (0 == pictureToDelete.compare((*itr)->getName())) {
+			this->_pictureContainer.remove(*itr);
+			return true;
+		}
 	}
-	else {
-		return false;
-	}
+	return false;
 }
 
 std::string Location::getLocationName() {
@@ -85,6 +91,10 @@ std::list<Location*> Location::getSubLocation() {
 	}
 
 	return ret;
+}
+
+Location* Location::getParentLocation() {
+	return this->_map->getParentMap()->getLoc();
 }
 
 

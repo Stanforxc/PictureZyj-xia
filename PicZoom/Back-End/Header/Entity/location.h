@@ -9,7 +9,7 @@
 #include<queue>
 
 
-extern class picture;
+extern class Picture;
 extern class Map;
 
 class Location
@@ -27,8 +27,8 @@ public:
 	void  setMap(Map* map);
 	
 
-	std::list <std::string>    getPictureContainer();
-	bool                       addToPictureContainer(std::string pictureToAdd);
+	std::list <Picture*>       getPictureContainer();
+	bool                       addToPictureContainer(Picture* pictureToAdd);
 	bool                       deletePictureFromContainer(std::string pictureToDelete);
 
 	std::string                getLocationName();
@@ -37,11 +37,12 @@ public:
 	std::string                getDescription();
 	void                       setDescription(std::string decription);
 	std::list<Location*>       getSubLocation();
+	Location*                  getParentLocation();
 
 	
 private:
 	Map*                       _map;
-	std::list<std::string>     _pictureContainer; //only store the url/name in this level, do not save the pic in the sublevel
+	std::list<Picture*>        _pictureContainer; //only store the url/name in this level, do not save the pic in the sublevel
 	std::string                _locationName;
 	std::string                _description;
 };

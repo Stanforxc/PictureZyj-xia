@@ -6,14 +6,11 @@
 Image::Image()
 {
 	loc = new Location();
-	url = "test.jpg";    //默认为当前路径
-	dirUrl = "";  //默认文件夹路径
 	picName = "";
 	description = "";
 }
 
-Image::Image(string url, string picName, string des) {
-	this->url = url;
+Image::Image(string picName, string des) {
 	this->picName = picName;
 	this->description = des;
 }
@@ -50,7 +47,6 @@ bool Image::read(string u) {
 		cerr << "照片不存在，请重新输入路径" << endl;
 		string newUrl;
 		cin >> newUrl;
-		url = newUrl;
 	}
 	
 	//delete img;
@@ -122,7 +118,6 @@ bool Image::save(string dUrl) {
 }
 
 bool Image::del(string url) {
-	remove(url.c_str());
 
 	//查看是否删除成功
 
@@ -230,7 +225,6 @@ bool Image::undoSolution() {
 }
 
 bool Image::redoSolution() {
-	urlPrev.push_back(url);
 	return true;
 }
 
@@ -307,5 +301,6 @@ HBITMAP Image::GetRotatedBitmap(HBITMAP hBitmap, float radians, COLORREF clrBack
 }
 
 std::string Image::getUrl() {
-	return this->url;
+	std::string url("Location\\");
+	return url + this->loc->getLocationName() + "\\" + this->picName;
 }

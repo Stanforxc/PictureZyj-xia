@@ -4,14 +4,17 @@ Map::Map(): Image() {
 	this->_parentMap = nullptr;
 }
 
-Map::Map(string url, string picName, string des, Map* parentMap, int x, int y) :
-	Image(url, picName, des) {
+Map::Map(string picName, string des, Map* parentMap, int x, int y) :
+	Image( picName, des) {
 	this->_parentMap = parentMap;
 	this->_coordinate.x = x;
 	this->_coordinate.y = y;
 }
 
-Map::~Map() {}
+Map::~Map() {
+	delete this->loc;
+
+}
 
 Map*  Map::getSubMapByCoordiante(int x, int y) {
 	for (std::map<Coordinate, Map*>::iterator itr = this->_subMap.begin(); itr != this->_subMap.end(); itr++) {

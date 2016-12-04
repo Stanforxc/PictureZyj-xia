@@ -19,7 +19,7 @@ class Image
 {
 public:
 	Image();
-	Image(string url, string picName, string des);
+	Image(string picName, string des);
 	virtual bool read(string u);
 	void getFiles(string path, vector<string>& files);  //获取文件名
 	virtual bool readDir(string dUrl, int& sucRate);
@@ -43,10 +43,10 @@ public:
 	virtual void rotate(CImage* image);
 	virtual string getUrl();
 	~Image();
-private:
+protected:
 	Location* loc;
-	string url;  //图片url
-	string dirUrl;  //文件夹url
+private:
+	
 	vector<string> urlPrev;  //记录先前的分辨率版本
 	map<string, vector<CImage> >  imageMap;
 	string picName;

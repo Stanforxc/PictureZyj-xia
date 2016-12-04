@@ -6,6 +6,7 @@
 #include "Timer.h"
 #include "Consts.h"
 #include "afxole.h"
+#include "Resource.h"
 #include<vector>
 
 #pragma once
@@ -21,6 +22,7 @@ class BottomWindows;
 class FileExplorer;
 class SlideShow;
 class NewFileLoader;
+
 
 // CPicZoomDlg Dialog class. This class initialize OpenGL and, create main components of PicZoom.
 // All messages received in this class are routed to the GLWindowBase* objects in m_Windows list.

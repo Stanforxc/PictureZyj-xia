@@ -5,6 +5,7 @@
 #include "PicZoom.h"
 #include "PicZoomDlg.h"
 #include "afxmt.h"
+#include "Back-End/Header//Service/Application.h"
 #include<iostream>
 
 #ifdef _DEBUG
@@ -95,7 +96,8 @@ BOOL CPicZoomApp::InitInstance()
 	freopen("CONIN$","r+t",stdin);
 	
 	
-	
+	Application test;
+	test.run();
 
 
 	/*

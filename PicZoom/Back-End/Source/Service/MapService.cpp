@@ -5,7 +5,6 @@
 MapService::MapService()
 {
 	this->_rootMap = nullptr;
-	this->_currentMap = nullptr;
 	this->_nextId = 0;
 }
 
@@ -63,7 +62,7 @@ Map* MapService::getMapById(int id) {
 	}
 }
 
-bool MapService::addMap(int x, int y, Map* mapToAdd) {
+bool MapService::addMap(Map* mapToAdd, int x, int y) {
 	try {
 		bool existFlag = false;
 		//first check if the parent is in the tree

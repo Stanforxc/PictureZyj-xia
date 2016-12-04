@@ -16,11 +16,10 @@ public:
 
 	Map* getMapByName(std::string mapName);
 	Map* getMapById(int id);
-	bool addMap(int x, int y, Map* mapToAdd);
+	bool addMap( Map* mapToAdd, int x=-1, int y=-1);
 	bool deleteMap(Map* mapToDelete);
 private:
 	Map* _rootMap;
-	Map* _currentMap;
 	int  _nextId;
 };
 

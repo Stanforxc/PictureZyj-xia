@@ -7,13 +7,13 @@
 #include "MapService.h"
 #include "../../Header/Json/json.h"
 #include "../Entity/picture.h"
+#include "../../../PicZoomDlg.h"
 
 
-class CPicZoomDlg;
 
 class Application {
 public:
-	Application(CPicZoomDlg* picZoom);
+	Application();
 	~Application();
 
 	LocationService* getLocationService();
@@ -32,19 +32,21 @@ private:
 	//dispatcher commond
 	bool dispatchCommond(std::list<string> comList);
 
-	//commonds                                                            //commonds:
-	bool                       cdLoc(std::string name);                   //cd
-	void                       mkLoc(std::string name);                   //mkloc
-	void                       deLoc(std::string name);                   //deloc
-	void                       lsLoc();                                   //lsloc
-	void                       lsPic();                                   //lspic
-	void                       adPic(std::string url, std::string name);  //adpic
-	void                       dePic(std::string name);                   //depic
-	void                       ldPic(std::string name);                   //ldpic
-	void                       ldMap();                                   //ldmap
-	void                       adMap(std::string url, std::string name);  //admap
-	void                       deMap(std::string name);                                   //demap
+	//commonds     /*commonds:*/                                                       
+	void           /*cd*/               cdLoc(std::string name);                   
+	void           /*mkloc*/            mkLoc(std::string name);                   
+	void           /*deloc*/            deLoc(std::string name);                   
+	void           /*lsloc*/            lsLoc();                                   
+	void           /*lspic*/            lsPic();                                   
+	void           /*adpic*/            adPic(std::string url, std::string name, std::string des = "");  
+	void           /*depic*/            dePic(std::string name);                   
+	void           /*ldpic*/            ldPic(std::string name);                   
+	void           /*ldmap*/            ldMap();                                   
+	void           /*admap*/            adMap(std::string url, std::string name, std::string des = "");
+	void           /*demap*/            deMap();                                   
 	
+	//output path
+	void outputPath();
 
 
 
@@ -53,7 +55,7 @@ private:
 	LocationService*          _locationService;
 	MapService*               _mapService;
 	std::list<Location*>      _locationPath;
-	CPicZoomDlg*              _PicZoom;
+	//CPicZoomDlg*              _PicZoom;
 };
 
 #endif

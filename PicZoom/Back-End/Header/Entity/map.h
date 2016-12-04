@@ -36,7 +36,7 @@ class Map :
 	friend class Application;
 public:
 	Map();
-	Map(string url, string picName, string des, Map* parentMap, int x, int y);
+	Map(string picName, string des, Map* parentMap, int x=-1, int y=-1);
 	~Map();
 
 	Map*           getSubMapByCoordiante(int x, int y);

@@ -1,21 +1,21 @@
 #include"../../Header/Entity/picture.h"
 
 Picture::Picture(): Image() {
-	this->_map = nullptr;
 }
 
-Picture::Picture(std::string url, std::string picName, std::string des, Map* map) : Image(url, picName, des) {
-	this->_map = map;
+Picture::Picture(std::string picName, std::string des) : Image(picName, des) {
 }
 
 Picture::~Picture() {
 
 }
 
-list<Location*>  Picture::getLocationPath() {
-	return this->_locationPath;
-}
-
-Map*  Picture::getMap() {
-	return this->_map;
+std::list<Location*>  Picture::getLocationPath() {
+	Location* loc = this->getLoc();
+	std::list<Location*> ret;
+	while (loc != nullptr) {
+		ret.push_front(loc);
+		loc = loc->getParentLocation();
+	}
+	return ret;
 }

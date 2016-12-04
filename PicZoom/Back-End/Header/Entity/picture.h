@@ -13,15 +13,13 @@ class Picture :
 {
 public:
 	Picture();
-	Picture(std::string url, std::string picName, std::string des, Map* map);
+	Picture(std::string picName, std::string des);
 	~Picture();
 
-	list<Location*> getLocationPath();
-	Map*            getMap();
+	list<Location*>  getLocationPath();
 
 private:
 	list<Location*>  _locationPath;
-	Map*             _map;
 
 };
 
