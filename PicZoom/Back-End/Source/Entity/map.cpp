@@ -2,6 +2,7 @@
 
 Map::Map(): Image() {
 	this->_parentMap = nullptr;
+	this->_Id = -100;
 }
 
 Map::Map(string picName, string des, Map* parentMap, int x, int y) :
@@ -9,11 +10,11 @@ Map::Map(string picName, string des, Map* parentMap, int x, int y) :
 	this->_parentMap = parentMap;
 	this->_coordinate.x = x;
 	this->_coordinate.y = y;
+	this->_Id = -100;
 }
 
 Map::~Map() {
-	delete this->loc;
-
+	//delete this->loc;
 }
 
 Map*  Map::getSubMapByCoordiante(int x, int y) {
@@ -40,7 +41,8 @@ bool Map::deleteSubMap(Map* map) {
 
 bool Map::addSubMap(Map* map) {
 	for (std::map<Coordinate, Map*>::iterator itr = this->_subMap.begin(); itr != this->_subMap.end(); itr++) {
-		if (map->_coordinate.x == itr->first.x && map->_coordinate.y == itr->first.y) {
+		if (itr->first.x != 0 && itr->first.y !=0 &&
+			map->_coordinate.x == itr->first.x && map->_coordinate.y == itr->first.y) {
 			return false;
 		}
 	}
@@ -65,7 +67,7 @@ Coordinate Map::getCoordiante(){
 
 std::list<Map*> Map::getSubMapList() {
 	std::list<Map*> ret;
-	for (auto itr = this->_subMap.begin(); itr != this->_subMap.begin(); itr++) {
+	for (auto itr = this->_subMap.begin(); itr != this->_subMap.end(); itr++) {
 		ret.push_back(itr->second);
 	}
 	return ret;

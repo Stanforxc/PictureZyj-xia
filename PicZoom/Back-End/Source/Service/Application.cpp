@@ -2,14 +2,28 @@
 #include<exception>
 #include<fstream>
 #include<algorithm>
+#include<windows.h>
 
-std::string Application::_configUrl = "Config/config.json";
+
+void setStyle(int style) {
+	if (1 == style) {
+		HANDLE outPutHandle = GetStdHandle(STD_OUTPUT_HANDLE);
+		SetConsoleTextAttribute(outPutHandle, BACKGROUND_BLUE | FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN | BACKGROUND_INTENSITY | FOREGROUND_INTENSITY);
+	}
+	else if (2 == style) {
+		HANDLE outPutHandle = GetStdHandle(STD_OUTPUT_HANDLE);
+		SetConsoleTextAttribute(outPutHandle, FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+	}
+
+}
+
+std::string Application::_configUrl = "Config\\config.json";
 
 Application::Application() {
 	this->_locationService = new LocationService();
 	this->_mapService = new MapService();
 	this->loadConfig();
-	//this->_PicZoom = picZoom;
+	setStyle(2);
 }
 
 Application::~Application() {
@@ -37,13 +51,15 @@ bool Application::savaConfig() {
 		/********************************************************/
 		//location config
 		auto locRepo = this->_locationService->_locationRepo;
-		for (auto itr = locRepo.begin();itr != locRepo.begin(); itr++) {
+		for (auto itr = locRepo.begin();itr != locRepo.end(); itr++) {
 			Json::Value location;
 			location["locationName"] = (*itr)->getLocationName();
 			location["description"] = (*itr)->getDescription();
 			Json::Value picContainer;
-			for (auto itrPic=(*itr)->getPictureContainer().begin();
-				itrPic != (*itr)->getPictureContainer().end(); itrPic++) {//each Picture*
+			std::list<Picture*> lPicCon = (*itr)->getPictureContainer();
+			for (auto itrPic=lPicCon.begin();
+				itrPic != lPicCon.end();
+				itrPic++) {//each Picture*
 				Json::Value picItem;
 				picItem["pictureName"] = (*itrPic)->getName();
 				picItem["description"] = (*itrPic)->getDiscription();
@@ -113,7 +129,7 @@ bool Application::savaConfig() {
 
 bool Application::loadConfig() {
 	try {
-		std::ifstream in(Application::_configUrl, std::ios::binary);
+		std::ifstream in(Application::_configUrl);
 		std::filebuf* pbuf=in.rdbuf();
 		//get size of file
 		long long filesize = pbuf->pubseekoff(0, std::ios::end, std::ios::in);
@@ -142,6 +158,8 @@ bool Application::loadConfig() {
 					picItem->setDiscription((*itrPic)["description"].asString());
 					//add picture to location
 					locationItem->addToPictureContainer(picItem);
+					//set location
+					picItem->setLoc(locationItem);
 				}
 				this->_locationService->addNewLocation(locationItem);
 			}
@@ -155,7 +173,8 @@ bool Application::loadConfig() {
 				//get all parameters to prepare for newing an item
 				std::string picName = (*itr)["pictureName"].asString();
 				std::string description = (*itr)["description"].asString();
-				Map*        parentMap = this->_mapService->getMapById((*itr)["parentMap"].asInt());
+				int parentId = (*itr)["parentMap"].asInt();
+				Map*        parentMap = this->_mapService->getMapById(parentId);
 				int         coordianteX = (*itr)["coordiante"]["x"].asInt();
 				int         coordianteY = (*itr)["coordiante"]["y"].asInt();
 				//new a item
@@ -163,17 +182,21 @@ bool Application::loadConfig() {
 				//set Id
 				mapItem->_Id = (*itr)["id"].asInt();
 				//insert to parent map
-				parentMap->_subMap.insert(
-					pair<Coordinate,Map*>(
-					*(new Coordinate(coordianteX,coordianteY)),
-					mapItem
-					)
-				);
+				if (nullptr != parentMap) {
+					this->_mapService->addMap(mapItem);
+				}
+				//root map
+				else {
+					this->_mapService->_rootMap = mapItem;
+				}
+
 				//set location
 				Location* location = this->_locationService->getLocation((*itr)["location"].asString());
 				mapItem->setLoc(location);
 				location->_map = mapItem;
 			}
+			this->_locationService->_currentLocation =
+				this->_mapService->_rootMap->getLoc();
 			return true;
 		}//parse json successful
 		else {
@@ -185,15 +208,16 @@ bool Application::loadConfig() {
 	}
 }
 
-std::list<string> Application::parseCommond(std::string commond) {
-	std::list<string> ret;
+std::vector<std::string> Application::parseCommond(std::string commond) {
+	std::vector<std::string> ret;
 	int firstFlag = 0, secondFlag = 0;
 	int length = commond.size();
 	while (firstFlag < length) {
 		while (commond[secondFlag] != ' ' && secondFlag != length) {
 			secondFlag++;
 		}
-		ret.push_back( commond.substr(firstFlag, secondFlag-firstFlag) );
+		std::string cmd = commond.substr(firstFlag, secondFlag - firstFlag);
+		ret.push_back( cmd );
 		//ignore all the space
 		firstFlag = secondFlag;
 		while (firstFlag < length && commond[firstFlag] == ' ') {
@@ -204,75 +228,93 @@ std::list<string> Application::parseCommond(std::string commond) {
 	return ret;
 }
 
-bool Application::dispatchCommond(std::list<string> comList) {
+bool Application::dispatchCommond(std::vector<std::string> comList) {
 	if (3 < comList.size()) {
 		return false;
 	}
 
+	
 	std::string commond = comList.front();
 
+	//exit
+	if (0 == commond.compare("exit")) {
+		return false;
+	}
+
 	//cd
-	if(0 == commond.compare("cd")) {
-		this->cdLoc(comList.back());
+	else if(0 == commond.compare("cd")) {
+		this->cdLoc(comList[1]);
 	}
 
 	//mkloc
-	if(0 == commond.compare("mkloc")) {
-		this->mkLoc(comList.back());
+	else if(0 == commond.compare("mkloc")) {
+		this->mkLoc(comList[1]);
 	}
 
 	//deloc
-	if (0 == commond.compare("deloc")) {
-		this->deLoc(comList.back());
+	else if (0 == commond.compare("deloc")) {
+		this->deLoc(comList[1]);
 	}
 
 	//lsloc
-	if (0 == commond.compare("lsloc")) {
+	else if (0 == commond.compare("lsloc")) {
 		this->lsLoc();
 	}
 
 	//lspic
-	if (0 == commond.compare("lspic")) {
+	else if (0 == commond.compare("lspic")) {
 		this->lsPic();
 	}
 
 	//adpic
-	if (0 == commond.compare("adpic")) {
-		this->adPic(*(comList.begin()++), comList.back());
+	else if (0 == commond.compare("adpic")) {
+		this->adPic(comList[1], comList[2]);
 	}
 
 	//depic
-	if (0 == commond.compare("depic")) {
-		this->dePic(comList.back());
+	else if (0 == commond.compare("depic")) {
+		this->dePic(comList[1]);
 	}
 
 	//ldpic
-	if (0 == commond.compare("ldpic")) {
-		this->ldPic(comList.back());
+	else if (0 == commond.compare("ldpic")) {
+		this->ldPic(comList[1]);
 	}
 
 	//ldmap
-	if (0 == commond.compare("ldmap")) {
+	else if (0 == commond.compare("ldmap")) {
 		this->ldMap();
 	}
 
 	//admap
-	if (0 == commond.compare("admap")) {
-		this->adMap(*(comList.begin()++), comList.back());
+	else if (0 == commond.compare("admap")) {
+		this->adMap(comList[1], comList[2]);
 	}
 
 	//demap
-	if (0 == commond.compare("demap")) {
+	else if (0 == commond.compare("demap")) {
 		this->deMap();
 	}
+	else
+	{
+		std::cout << "No such commond!" << std::endl;
+	}
+
+	return true;
 
 
 }
 
 /***************************commond********************************************************/
 
-//cdloc
+//cdloc -- check
 void Application::cdLoc(std::string name) {
+	Location* curVal = this->_locationService->_currentLocation;
+	if (0 == name.compare("..")) {
+		Location* parentLoc = curVal->getParentLocation();
+		this->_locationService->_currentLocation = (parentLoc == nullptr ? curVal : parentLoc);
+		return;
+	}
 	std::list<Location*> allLoc = this->_locationService->_currentLocation->getSubLocation();
 	for (auto itr = allLoc.begin(); itr != allLoc.end(); itr++) {
 		if (0 == name.compare((*itr)->_locationName)) {
@@ -284,14 +326,16 @@ void Application::cdLoc(std::string name) {
 	return;
 }
 
-//mkloc
+//mkloc -- check
 void Application::mkLoc(std::string name) {
 	Location* newloc = new Location();
 	Map* newmap = new Map();
 
 	//set map info
 	newmap->setLoc(newloc);
-	newmap->_parentMap = this->_locationService->_currentLocation->_map;
+	//newmap->_parentMap = this->_locationService->_currentLocation->_map;
+	Location* curLoc = this->_locationService->_currentLocation;
+	newmap->_parentMap = (nullptr == curLoc ? nullptr : curLoc->_map);
 	//set loc info
 	newloc->setMap(newmap);
 	newloc->_locationName = name;
@@ -304,7 +348,7 @@ void Application::mkLoc(std::string name) {
 	system(cmd.c_str());
 }
 
-//deloc
+//deloc -- check
 void Application::deLoc(std::string name) {
 	std::list<Location*> allLoc = this->_locationService->_currentLocation->getSubLocation();
 	for (auto itr = allLoc.begin(); itr != allLoc.end(); itr++) {
@@ -318,27 +362,33 @@ void Application::deLoc(std::string name) {
 	return;
 }
 
-//lsloc
+//lsloc -- check
 void Application::lsLoc() {
-	int size = 0;
+	int size = 1;
+	
 	std::list<Location*> allLoc = this->_locationService->_currentLocation->getSubLocation();
 	for (auto itr = allLoc.begin(); itr != allLoc.end(); itr++, size++) {
+		setStyle(1);
 		cout << (*itr)->_locationName;
-		std::cout << (0 == size % 3 ? "\n" : "  ");
+		setStyle(2);
+		std::cout << (0 == size % 10 ? "\n" : "  ");
 	}
+	std::cout << '\n';
 }
 
-//lsPic
+//lsPic -- check
 void Application::lsPic() {
 	int size = 0;
 	auto picContainer = this->_locationService->_currentLocation->getPictureContainer();
 	for (auto itr = picContainer.begin(); itr != picContainer.end(); itr++) {
+		setStyle(1);
 		std::cout << (*itr)->getName();
+		setStyle(2);
 		std::cout << (0 == size % 3 ? "\n" : "  ");
 	}
 }
 
-//adpic
+//adpic -- check
 void Application::adPic(std::string url, std::string name, std::string des) {
 	//copy file
 	CString existingFile(url.c_str());
@@ -352,7 +402,7 @@ void Application::adPic(std::string url, std::string name, std::string des) {
 	this->_locationService->_currentLocation->addToPictureContainer(newPicItem);
 }
 
-//depic
+//depic -- check
 void Application::dePic(std::string name) {
 	Location* curLoc = this->_locationService->_currentLocation;
 	
@@ -362,17 +412,17 @@ void Application::dePic(std::string name) {
 	
 }
 
-//ldpic
+//ldpic -- check
 void Application::ldPic(std::string name) {
 	std::list<Picture*> picCon = this->_locationService->_currentLocation->getPictureContainer();
 	//search for Picture
 	for (auto itr = picCon.begin(); itr != picCon.end(); itr++) {
 		if (0 == name.compare((*itr)->getName())) {
-			const char* picUrl = (*itr)->getUrl().c_str();
+			std::string picUrl = (*itr)->getUrl();
 			//char to tchar
-			int iLength = MultiByteToWideChar(CP_ACP, 0, picUrl, strlen(picUrl) + 1, NULL, 0);
+			int iLength = MultiByteToWideChar(CP_ACP, 0, picUrl.c_str(), strlen(picUrl.c_str()) + 1, NULL, 0);
 			TCHAR* tPicUrl = new TCHAR[iLength];
-			MultiByteToWideChar(CP_ACP, 0, picUrl, strlen(picUrl) + 1, tPicUrl, iLength);
+			MultiByteToWideChar(CP_ACP, 0, picUrl.c_str(), strlen(picUrl.c_str()) + 1, tPicUrl, iLength);
 			//new a dialog
 			CPicZoomDlg dlg(tPicUrl);
 			dlg.DoModal();
@@ -382,20 +432,26 @@ void Application::ldPic(std::string name) {
 	std::cout << "Error!No such picture!" << std::endl;
 }
 
-//ldmap
+//ldmap -- check
 void Application::ldMap() {
 	Location* curLoc = this->_locationService->_currentLocation;
-	const char* mapUrl = curLoc->_map->getUrl().c_str();
+
+	if (0 == curLoc->_map->getName().compare("")) {
+		std::cout << "No map here!" << endl;
+		return;
+	}
+
+	std::string mapUrl = curLoc->_map->getUrl();
 	//char to tchar
-	int iLength = MultiByteToWideChar(CP_ACP, 0, mapUrl, strlen(mapUrl) + 1, NULL, 0);
+	int iLength = MultiByteToWideChar(CP_ACP, 0, mapUrl.c_str(), strlen(mapUrl.c_str()) + 1, NULL, 0);
 	TCHAR* tMapUrl = new TCHAR[iLength];
-	MultiByteToWideChar(CP_ACP, 0, mapUrl, strlen(mapUrl) + 1, tMapUrl, iLength);
+	MultiByteToWideChar(CP_ACP, 0, mapUrl.c_str(), strlen(mapUrl.c_str()) + 1, tMapUrl, iLength);
 	//new a dialog
 	CPicZoomDlg dlg(tMapUrl);
 	dlg.DoModal();
 }
 
-//admap
+//admap -- check
 void Application::adMap(std::string url, std::string name, std::string des) {
 	//copy file
 	CString existingFile(url.c_str());
@@ -418,11 +474,13 @@ void Application::deMap() {
 	std::string path = "Location\\" + curLoc->getLocationName() +"\\" + curLoc->_map->getName();
 	CString fileUrl = ("%s", path.c_str());
 	DeleteFile(fileUrl.AllocSysString());
+	//delete from loc
+	curLoc->_map->setName("");
+
 }
 
 
 /************************************run**********************************************/
-
 
 
 void Application::run() {
@@ -431,14 +489,15 @@ void Application::run() {
 	while (1) {
 		std::string cmd;
 		getline(std::cin,cmd);
-		std::list<std::string> cmdList = this->parseCommond(cmd);
-		this->dispatchCommond(cmdList);
+		std::vector<std::string> cmdList = this->parseCommond(cmd);
+		if (!this->dispatchCommond(cmdList)) {
+			break;
+		}
 		this->outputPath();
 	}
 }
 
 void Application::outputPath() {
-	std::cout << std::endl << "root";
 	Location* loc = this->_locationService->_currentLocation;
 	if (NULL == loc) {
 		std::cout << ">";
@@ -452,6 +511,6 @@ void Application::outputPath() {
 
 	for (auto itr = path.begin(); itr != path.end(); itr++) {
 		std::cout << *itr;
-		std::cout << (itr == --path.end() ? '/' : '>');
+		std::cout << (*itr == path.back() ? "> " : "/ ");
 	}
 }

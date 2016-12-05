@@ -96,9 +96,9 @@ BOOL CPicZoomApp::InitInstance()
 	freopen("CONIN$","r+t",stdin);
 	
 	
-	Application test;
-	test.run();
-
+	Application* console = new Application();
+	console->run();
+	delete console;
 
 	/*
 	system("pause");

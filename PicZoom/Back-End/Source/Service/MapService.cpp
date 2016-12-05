@@ -9,8 +9,7 @@ MapService::MapService()
 }
 
 MapService::~MapService() {
-	try {
-		this->deleteMap(this->_rootMap);
+	try {		
 	}catch (...) {
 		//ignore 
 	}
@@ -41,12 +40,16 @@ Map* MapService::getMapByName(std::string mapName) {
 
 Map* MapService::getMapById(int id) {
 	try {
+		if (-1 == id)
+		{
+			return nullptr;
+		}
 		std::list<Map*> searchQueue;
 		std::map<Coordinate, Map*> *subMap;
 		searchQueue.push_back(this->_rootMap);
 		do {
 			Map* currentMap = *searchQueue.begin();
-			subMap = &currentMap->_subMap;
+			subMap = &(currentMap->_subMap);
 			for (auto itr = subMap->begin(); itr != subMap->end(); itr++) {
 				searchQueue.push_back(itr->second);
 			}
@@ -70,13 +73,26 @@ bool MapService::addMap(Map* mapToAdd, int x, int y) {
 		while (nullptr != currentMap->getParentMap()) {
 			currentMap = currentMap->getParentMap();
 		}
-		if (currentMap != this->_rootMap) {
+		if (this->_rootMap!=nullptr&&currentMap != this->_rootMap) {
 			return false;
 		}
 		//add
-		mapToAdd->_Id = this->_nextId;
-		this->_nextId++;
-		mapToAdd->getParentMap()->addSubMap(mapToAdd);
+		if (mapToAdd->_Id == -100) {
+			mapToAdd->_Id = this->_nextId;
+			this->_nextId++;
+		}
+
+		if (0 == mapToAdd->_coordinate.x && 0 == mapToAdd->_coordinate.y) {
+			mapToAdd->_coordinate.x = -mapToAdd->_Id;
+			mapToAdd->_coordinate.y = -mapToAdd->_Id;
+		}
+		if (nullptr != this->_rootMap) {
+			mapToAdd->getParentMap()->addSubMap(mapToAdd);
+		}
+		else {
+			this->_rootMap = mapToAdd;
+		}
+		
 		return true;
 
 	}
@@ -99,12 +115,15 @@ bool MapService::deleteMap(Map* mapToDelete) {
 			return false;
 		}
 		//delete from parent
-		auto parentSubmapSet = mapToDelete->getParentMap()->_subMap;
-		for (auto itrPa = parentSubmapSet.begin(); itrPa != parentSubmapSet.end(); itrPa++) {
-			if (mapToDelete == itrPa->second) {
-				mapToDelete->getParentMap()->deleteSubMap(mapToDelete);
+		if (nullptr != mapToDelete->getParentMap()) {
+			auto parentSubmapSet = mapToDelete->getParentMap()->_subMap;
+			for (auto itrPa = parentSubmapSet.begin(); itrPa != parentSubmapSet.end(); itrPa++) {
+				if (mapToDelete == itrPa->second) {
+					mapToDelete->getParentMap()->deleteSubMap(mapToDelete);
+				}
 			}
 		}
+
 		//free this map and all its submaps
 		std::list<Map*> deleteQueue;
 		currentMap = nullptr;

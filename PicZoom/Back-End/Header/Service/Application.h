@@ -8,6 +8,8 @@
 #include "../../Header/Json/json.h"
 #include "../Entity/picture.h"
 #include "../../../PicZoomDlg.h"
+#include<list>
+#include<string>
 
 
 
@@ -27,10 +29,10 @@ private:
 	bool savaConfig();
 	
 	//parse commond
-	std::list<std::string> parseCommond(std::string);
+	std::vector<std::string> parseCommond(std::string);
 	
 	//dispatcher commond
-	bool dispatchCommond(std::list<string> comList);
+	bool dispatchCommond(std::vector<std::string> comList);
 
 	//commonds     /*commonds:*/                                                       
 	void           /*cd*/               cdLoc(std::string name);                   

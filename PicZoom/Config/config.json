@@ -1,0 +1,99 @@
+{
+   "LocationConfig" : [
+      {
+         "description" : "",
+         "locationName" : "universe",
+         "pictureContainer" : null
+      },
+      {
+         "description" : "",
+         "locationName" : "china",
+         "pictureContainer" : [
+            {
+               "description" : "",
+               "pictureName" : "test.bmp"
+            }
+         ]
+      },
+      {
+         "description" : "",
+         "locationName" : "usa",
+         "pictureContainer" : null
+      },
+      {
+         "description" : "",
+         "locationName" : "japan",
+         "pictureContainer" : null
+      },
+      {
+         "description" : "",
+         "locationName" : "india",
+         "pictureContainer" : null
+      }
+   ],
+   "MapConfig" : {
+      "mapContainer" : [
+         {
+            "coordinate" : {
+               "x" : 0,
+               "y" : 0
+            },
+            "description" : "",
+            "id" : 0,
+            "location" : "universe",
+            "parentMap" : -1,
+            "pictureName" : "",
+            "url" : "Location\\universe\\"
+         },
+         {
+            "coordinate" : {
+               "x" : -15,
+               "y" : -15
+            },
+            "description" : "",
+            "id" : 15,
+            "location" : "india",
+            "parentMap" : 0,
+            "pictureName" : "",
+            "url" : "Location\\india\\"
+         },
+         {
+            "coordinate" : {
+               "x" : -14,
+               "y" : -14
+            },
+            "description" : "",
+            "id" : 14,
+            "location" : "china",
+            "parentMap" : 0,
+            "pictureName" : "china_map.jpg",
+            "url" : "Location\\china\\china_map.jpg"
+         },
+         {
+            "coordinate" : {
+               "x" : -13,
+               "y" : -13
+            },
+            "description" : "",
+            "id" : 13,
+            "location" : "usa",
+            "parentMap" : 0,
+            "pictureName" : "",
+            "url" : "Location\\usa\\"
+         },
+         {
+            "coordinate" : {
+               "x" : -12,
+               "y" : -12
+            },
+            "description" : "",
+            "id" : 12,
+            "location" : "japan",
+            "parentMap" : 0,
+            "pictureName" : "",
+            "url" : "Location\\japan\\"
+         }
+      ],
+      "nextId" : 17
+   }
+}

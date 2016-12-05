@@ -2,11 +2,10 @@
 #include "../../Header/Entity/map.h"
 #include "../../Header/Entity/picture.h"
 #include <algorithm>
+#include <stdio.h>
 
 Location::Location() {
 	this->_map = nullptr;
-	this->_locationName = nullptr;
-	this->_description = nullptr;
 }
 
 Location::Location(std::string locationName, std::string description, Map* map) {
@@ -16,16 +15,7 @@ Location::Location(std::string locationName, std::string description, Map* map) 
 }
 
 Location::~Location() {
-	for (auto itr = this->_pictureContainer.begin(); itr != this->_pictureContainer.end(); itr++) {
-		//delete all picture
-		std::string path = "Location\\" + this->_locationName + "\\" + (*itr)->getName();
-		CString fileUrl =("%s",path.c_str());
-		DeleteFile(fileUrl.AllocSysString());
-	}
-	//delete map
-	std::string mapPath = "Location\\" + this->_locationName + "\\" + this->_map->getName();
-	CString mapUrl = ("%s", mapPath.c_str());
-	DeleteFile(mapUrl.AllocSysString());
+
 }
 
 
@@ -59,6 +49,9 @@ bool Location::addToPictureContainer(Picture* pictureToAdd) {
 bool Location::deletePictureFromContainer(std::string pictureToDelete) {
 	for (auto itr = this->_pictureContainer.begin(); itr != this->_pictureContainer.end(); itr++) {
 		if (0 == pictureToDelete.compare((*itr)->getName())) {
+			//delete file
+			remove((*itr)->getUrl().c_str());
+			//delete from picture container
 			this->_pictureContainer.remove(*itr);
 			return true;
 		}
@@ -94,7 +87,13 @@ std::list<Location*> Location::getSubLocation() {
 }
 
 Location* Location::getParentLocation() {
-	return this->_map->getParentMap()->getLoc();
+	Map* parentMap = this->_map->getParentMap();
+	if (nullptr == parentMap) {
+		return nullptr;
+	}
+	else {
+		return parentMap->getLoc();
+	}
 }
 
 
