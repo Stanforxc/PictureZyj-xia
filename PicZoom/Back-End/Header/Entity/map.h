@@ -24,8 +24,12 @@ struct Coordinate {
 		this->y = yy;
 	}
 
-	bool operator < (Coordinate para) const {
+	bool operator < (Coordinate& para) const {
 		return this->x < para.x;
+	}
+
+	bool operator = (Coordinate& para) const {
+		return this->x == para.x && this->y == para.y;
 	}
 };
 
@@ -46,6 +50,7 @@ public:
 	void           setCoordinate(int x, int y);
 	Coordinate     getCoordiante();
 	std::list<Map*> getSubMapList();
+	bool           setSubMapCor(Coordinate oC, Coordinate nC );
 
 
 private:

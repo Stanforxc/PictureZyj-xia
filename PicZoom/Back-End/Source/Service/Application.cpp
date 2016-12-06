@@ -295,6 +295,26 @@ bool Application::dispatchCommond(std::vector<std::string> comList) {
 	else if (0 == commond.compare("demap")) {
 		this->deMap();
 	}
+	
+	//setcor
+	else if (0 == commond.compare("setcor")) {
+		this->setCoordinate(atoi(comList[1].c_str()), atoi(comList[2].c_str()));
+	}
+
+	//cor
+	else if (0 == commond.compare("cor")) {
+		this->getCoordiante(comList[1]);
+	}
+
+	//setdes
+	else if (0 == commond.compare("setdes")) {
+		this->setPicDescription(comList[1], comList[2]);
+	}
+
+	//des
+	else if (0 == commond.compare("des")) {
+		this->getPicDescription(comList[1]);
+	}
 	else
 	{
 		std::cout << "No such commond!" << std::endl;
@@ -479,6 +499,71 @@ void Application::deMap() {
 
 }
 
+//setcor
+void Application::setCoordinate(int x, int y) {
+	Location* curLoc = this->_locationService->_currentLocation;
+	Map*      curMap = curLoc->getMap();
+	Map*      parMap = curMap->getParentMap();
+	if (false == parMap->setSubMapCor(curMap->getCoordiante(), Coordinate(x, y))) {
+		std::cout << "Error!" << std:: endl;
+	}
+}
+
+//getcor
+void Application::getCoordiante(std::string name){
+
+	Location* curLoc = this->_locationService->_currentLocation;
+	Map*      curMap = curLoc->_map;
+	Map*      tarMap;
+	//get target map
+	if (0 == name.compare("self")) {
+		tarMap = curMap;
+	}
+	else {
+		auto locLis = curLoc->getSubLocation();
+		for (auto itr = locLis.begin(); itr != locLis.end(); itr++) {
+			if (0 == (*itr)->_locationName.compare(name)) {
+				tarMap = (*itr)->_map;
+			}
+		}
+	}
+	//output
+	if (0 > tarMap->_coordinate.x || 0 > tarMap->_coordinate.y) {
+		std::cout << "unset!" << std::endl;
+	}
+	else {
+		std::cout << tarMap->getCoordiante().x;
+		std::cout << "	";
+		std::cout << tarMap->getCoordiante().y << endl;
+	}
+}
+
+//setdes
+void Application::setPicDescription(std::string name, std::string des) {
+	Location* curLoc = this->_locationService->_currentLocation;
+	auto      picLis = curLoc->getPictureContainer();
+
+	for (auto itr = picLis.begin(); itr != picLis.end(); itr++) {
+		if (0 == (*itr)->getName().compare(name)) {
+			(*itr)->setDiscription(des);
+			std::cout << (*itr)->getName() << ": " << endl;
+			std::cout << (*itr)->getDiscription() << std::endl;
+		}
+	}
+}
+
+//des
+void Application::getPicDescription(std::string name) {
+	Location* curLoc = this->_locationService->_currentLocation;
+	auto      picLis = curLoc->getPictureContainer();
+
+	for (auto itr = picLis.begin(); itr != picLis.end(); itr++) {
+		if (0 == (*itr)->getName().compare(name)) {
+			std::cout << (*itr)->getName() << ": " << endl;
+			std::cout << (*itr)->getDiscription() << std::endl;
+		}
+	}
+}
 
 /************************************run**********************************************/
 

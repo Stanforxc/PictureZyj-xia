@@ -72,3 +72,16 @@ std::list<Map*> Map::getSubMapList() {
 	}
 	return ret;
 }
+
+bool Map::setSubMapCor(Coordinate oC, Coordinate nC) {
+
+	for (auto itr = this->_subMap.begin(); itr != this->_subMap.end(); itr++) {
+		if (oC.x == itr->first.x && oC.y == itr->first.y) {
+			itr->second->setCoordinate(nC.x, nC.y);
+			this->_subMap.insert(pair<Coordinate, Map*>(nC, itr->second));
+			this->_subMap.erase(itr);
+			return true;
+		}
+	}
+	return false;
+}

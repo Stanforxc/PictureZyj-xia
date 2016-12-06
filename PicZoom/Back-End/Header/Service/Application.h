@@ -45,7 +45,11 @@ private:
 	void           /*ldpic*/            ldPic(std::string name);                   
 	void           /*ldmap*/            ldMap();                                   
 	void           /*admap*/            adMap(std::string url, std::string name, std::string des = "");
-	void           /*demap*/            deMap();                                   
+	void           /*demap*/            deMap();     
+	void           /*setcor*/           setCoordinate(int x, int y);
+	void           /*cor*/              getCoordiante(std::string name);
+	void           /*setdes*/           setPicDescription(std::string name, std::string des);
+	void           /*des*/              getPicDescription(std::string name);
 	
 	//output path
 	void outputPath();
