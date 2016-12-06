@@ -48,7 +48,7 @@ private:
 	void           /*demap*/            deMap();     
 	void           /*setcor*/           setCoordinate(int x, int y);
 	void           /*cor*/              getCoordiante(std::string name);
-	void           /*setdes*/           setPicDescription(std::string name, std::string des);
+	void           /*setdes*/           setPicDescription(std::string name, std::vector<std::string> comList);
 	void           /*des*/              getPicDescription(std::string name);
 	
 	//output path

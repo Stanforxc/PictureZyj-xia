@@ -229,9 +229,6 @@ std::vector<std::string> Application::parseCommond(std::string commond) {
 }
 
 bool Application::dispatchCommond(std::vector<std::string> comList) {
-	if (3 < comList.size()) {
-		return false;
-	}
 
 	
 	std::string commond = comList.front();
@@ -242,17 +239,18 @@ bool Application::dispatchCommond(std::vector<std::string> comList) {
 	}
 
 	//cd
-	else if(0 == commond.compare("cd")) {
-		this->cdLoc(comList[1]);
+	else if(0 == commond.compare("cd") && comList.size()>=2) {
+			this->cdLoc(comList[1]);
 	}
 
 	//mkloc
-	else if(0 == commond.compare("mkloc")) {
-		this->mkLoc(comList[1]);
+	else if(0 == commond.compare("mkloc") && comList.size() >= 2) {
+			this->mkLoc(comList[1]);
+		
 	}
 
 	//deloc
-	else if (0 == commond.compare("deloc")) {
+	else if (0 == commond.compare("deloc") && comList.size() >= 2) {
 		this->deLoc(comList[1]);
 	}
 
@@ -267,17 +265,17 @@ bool Application::dispatchCommond(std::vector<std::string> comList) {
 	}
 
 	//adpic
-	else if (0 == commond.compare("adpic")) {
+	else if (0 == commond.compare("adpic") && comList.size() >= 3) {
 		this->adPic(comList[1], comList[2]);
 	}
 
 	//depic
-	else if (0 == commond.compare("depic")) {
+	else if (0 == commond.compare("depic") && comList.size() >= 2) {
 		this->dePic(comList[1]);
 	}
 
 	//ldpic
-	else if (0 == commond.compare("ldpic")) {
+	else if (0 == commond.compare("ldpic") && comList.size() >= 2) {
 		this->ldPic(comList[1]);
 	}
 
@@ -287,7 +285,7 @@ bool Application::dispatchCommond(std::vector<std::string> comList) {
 	}
 
 	//admap
-	else if (0 == commond.compare("admap")) {
+	else if (0 == commond.compare("admap") && comList.size() >= 3) {
 		this->adMap(comList[1], comList[2]);
 	}
 
@@ -297,22 +295,22 @@ bool Application::dispatchCommond(std::vector<std::string> comList) {
 	}
 	
 	//setcor
-	else if (0 == commond.compare("setcor")) {
+	else if (0 == commond.compare("setcor") && comList.size() >= 3) {
 		this->setCoordinate(atoi(comList[1].c_str()), atoi(comList[2].c_str()));
 	}
 
 	//cor
-	else if (0 == commond.compare("cor")) {
+	else if (0 == commond.compare("cor") && comList.size() >= 2) {
 		this->getCoordiante(comList[1]);
 	}
 
 	//setdes
-	else if (0 == commond.compare("setdes")) {
-		this->setPicDescription(comList[1], comList[2]);
+	else if (0 == commond.compare("setdes") && comList.size() >= 3) {
+		this->setPicDescription(comList[1], comList);
 	}
 
 	//des
-	else if (0 == commond.compare("des")) {
+	else if (0 == commond.compare("des") && comList.size() >= 2) {
 		this->getPicDescription(comList[1]);
 	}
 	else
@@ -539,10 +537,17 @@ void Application::getCoordiante(std::string name){
 }
 
 //setdes
-void Application::setPicDescription(std::string name, std::string des) {
+void Application::setPicDescription(std::string name, std::vector<std::string> comList) {
 	Location* curLoc = this->_locationService->_currentLocation;
 	auto      picLis = curLoc->getPictureContainer();
+	//merge des
+	std::string des;
+	for (int i = 2; i < comList.size(); i++) {
+		des.append(comList[i]);
+		des.append(" ");
+	}
 
+    //set des
 	for (auto itr = picLis.begin(); itr != picLis.end(); itr++) {
 		if (0 == (*itr)->getName().compare(name)) {
 			(*itr)->setDiscription(des);

@@ -24,11 +24,11 @@ struct Coordinate {
 		this->y = yy;
 	}
 
-	bool operator < (Coordinate& para) const {
+	bool operator < (Coordinate para) const {
 		return this->x < para.x;
 	}
 
-	bool operator = (Coordinate& para) const {
+	bool operator = (Coordinate para) const {
 		return this->x == para.x && this->y == para.y;
 	}
 };
